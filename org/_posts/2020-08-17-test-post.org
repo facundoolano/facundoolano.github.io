@@ -2,7 +2,8 @@
 #+BEGIN_EXPORT html
 ---
 layout: post
-title: Benighted on the Ben.
+title: Prueba con rog mode
+subtitle: por ahora no funciona
 excerpt: An unplanned bivouac on Ben Nevis.
 ---
 #+END_EXPORT
