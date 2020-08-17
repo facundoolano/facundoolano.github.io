@@ -2,7 +2,7 @@
 #+BEGIN_EXPORT html
 ---
 layout: post
-title: Prueba con rog mode
+title: Prueba con org mode
 subtitle: por ahora no funciona
 excerpt: An unplanned bivouac on Ben Nevis.
 ---
