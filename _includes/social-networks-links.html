@@ -132,6 +132,18 @@
   </li>
 {%- endif -%}
 
+{%- if site.social-network-links.stackoverflow_cv -%}
+  <li class="list-inline-item">
+      <a href="https://stackoverflow.com/cv/{{ site.social-network-links.stackoverflow_cv }}" title="StackOverflow">
+          <span class="fa-stack fa-lg" aria-hidden="true">
+              <i class="fas fa-circle fa-stack-2x"></i>
+              <i class="fab fa-stack-overflow fa-stack-1x fa-inverse"></i>
+          </span>
+          <span class="sr-only">StackOverflow</span>
+      </a>
+  </li>
+{%- endif -%}
+
 {%- if site.social-network-links.snapchat -%}
   <li class="list-inline-item">
     <a href="https://www.snapchat.com/add/{{ site.social-network-links.snapchat }}" title="Snapchat">
