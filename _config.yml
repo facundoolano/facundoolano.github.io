@@ -1,10 +1,10 @@
 # --- Basic options --- #
 
 # Name of website
-title: Un Blog
+title: Apuntes Inchequeables
 
 # Short description of your site
-description: Un Blog
+description: Por favor, acepte el misterio.
 
 # Your name to show in the footer
 author: Facundo Olano
@@ -12,17 +12,18 @@ author: Facundo Olano
 # --- List of links in the navigation bar --- #
 
 navbar-links:
-  About Me: "aboutme"
-  Resources:
-    - Beautiful Jekyll: "https://beautifuljekyll.com"
-    - Learn markdown: "https://www.markdowntutorial.com/"
-  Author's home: "https://deanattali.com"
+  # About Me: "aboutme"
+  Información útil:
+    - Emojis: "https://github.com/facundoolano/emojis"
+    - Panda vs Zombies: "https://play.google.com/store/apps/details?id=com.dxco.pandavszombies"
+    - Advenjure: "/advenjure"
+    - House Taken Over: "/house-taken"
 
 # --- Logo --- #
 
 # Image to show in the navigation bar - works best with a square image
 # Remove this parameter if you don't want an image in the navbar
-avatar: "/assets/img/avatar-icon.png"
+avatar: "/assets/img/inchequeable.png"
 
 # By default, the image is cut into a circle. You can disable this behaviour by setting 'round-avatar: false'
 round-avatar: true
@@ -66,14 +67,14 @@ social-network-links:
 
 # Select which social network share links to show in posts
 share-links-active:
-  twitter: true
+  twitter: false
   facebook: false
   linkedin: false
   vk: false
 
 # How to display the link to your website in the footer
 # Remove this if you don't want a link in the footer
-url-pretty: "MyWebsite.com"
+# url-pretty: "facundoolano.github.io"
 
 # Create a "tags" index page and make tags on each post clickable
 link-tags: true
