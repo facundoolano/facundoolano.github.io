@@ -52,6 +52,7 @@ a:focus {
 blockquote {
   color: #808080;
   font-style: italic;
+  margin-left: 2rem;
 }
 blockquote p:first-child {
   margin-top: 0;
@@ -813,14 +814,21 @@ table tr td :last-child {
 
 /* --- Code blocks --- */
 
+/* I yanked this from a bootstrap file, org exported code blocks don't seem to pickup the default settings */
 pre {
-  font-size: 1rem;
-  line-height: 1.5;
-
-
-  border-radius: 0.25rem;
-  padding: 0.59375rem;
+    display:block;
+    padding:9.5px;
+    margin:0 0 10px;
+    font-size:15px;
+    line-height:1.42857143;
+    color:#333;
+    word-break:break-all;
+    word-wrap:break-word;
+    background-color:#f5f5f5;
+    border:1px solid #ccc;
+    border-radius:4px
 }
+
 .highlight pre {
   border: none;
   background: none;
@@ -931,4 +939,13 @@ pre {
 
 .figure p {
     text-align: right;
+}
+
+.org-center {
+    text-align: center !important;
+}
+
+/* overriding to match the highlight in code blocks */
+code {
+    color: #BA36A5;
 }
