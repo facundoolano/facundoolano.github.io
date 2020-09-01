@@ -51,7 +51,7 @@ import advenjure.items as items
 magazine = items.make_item("sports magazine",
                            "The cover read 'Sports Almanac 1950-2000'")
 
-bedroom = rooms.make_item("Bedroom", "A smelling bedroom.")
+bedroom = rooms.make_room("Bedroom", "A smelling bedroom.")
 bedroom.add_item(magazine)
 #+END_SRC
 
