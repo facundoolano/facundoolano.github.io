@@ -25,6 +25,9 @@ p {
   line-height: 1.8;
   margin: 1.875rem 0;
 }
+ul {
+    line-height: 1.8;
+}
 h1,h2,h3,h4,h5,h6 {
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 800;
@@ -659,7 +662,7 @@ footer .footer-custom-content {
     font-size: 3.5rem;
   }
   .intro-header .post-heading h1 {
-    font-size: 3.125rem;
+    font-size: 2.5rem;
   }
   .intro-header.big-img .img-desc {
     font-size: 0.875rem;
@@ -818,7 +821,7 @@ table tr td :last-child {
 pre {
     display:block;
     padding:9.5px;
-    margin:0 0 10px;
+    margin:1.875rem 0;
     font-size:15px;
     line-height:1.42857143;
     color:#333;
