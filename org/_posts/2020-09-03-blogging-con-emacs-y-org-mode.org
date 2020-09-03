@@ -16,12 +16,12 @@ invertir algo de tiempo preparando mi editor para el proceso de escritura y publ
 Una de las razones por las que armé un nuevo blog es que trabajar con WordPress me daba escalofríos. Quería control de versiones para mis posts, tenerlos en GitHub en algún formato independiente de la plataforma, y, lo más importante, poder escribir en Emacs, el mismo editor que uso cotidianamente para programar. En particular, me interesaba usar [[https://orgmode.org/][org-mode]] como lenguaje de markup. El objetivo es alcanzar un ciclo virtuoso (?) en el que escribo más seguido, aprendo más sobre org-mode y mejoro mi configuración de Emacs en el camino.
 
 ** Setup
-Ya decidido a usar Emacs y org-mode, me pareció razonable buscar cómo integrarlos con Jekyll y Github Pages, para ahorrarme el trabajo y el costo de hosting y configuración del blog. Encontré [[https://carl.ac/blogging-with-emacs-org-github-pages/][este post]], que sigue un razonamiento muy parecido al mío, y lo usé como guía. Adicionalmente, la documentación de org-mode tiene [[https://orgmode.org/worg/org-tutorials/org-jekyll.html][una sección]] dedicada específicamente a este escenario.
+Ya decidido a usar Emacs y org-mode, me pareció razonable buscar cómo integrarlos con Jekyll y Github Pages, para ahorrarme el trabajo y el costo de hosting y configuración del blog. Encontré [[https://carl.ac/blogging-with-emacs-org-github-pages/][este post]], que sigue un razonamiento muy parecido al mío, y lo usé como guía. Adicionalmente, la documentación de org-mode tiene [[https://orgmode.org/worg/org-tutorials/org-jekyll.html][un tutorial]] dedicado específicamente a este escenario.
 
 Siguiendo el ejemplo de aquel post, hice un fork de [[https://beautifuljekyll.com/][BeautifulJekyll]],
-un template que se forkea directamente para servirlo con GitHub Pages y resuelve la mayoría de las necesidades básicas de un blog (layout, links, comentarios, analytics, etc.).
+un template pensado para GitHub Pages que resuelve la mayoría de las necesidades básicas de un blog (layout, links, comentarios, analytics, etc.).
 
-Para poder producir posts con org-mode, necesitaba producir HTML[fn:1] "Jekyll-friendly". Para esto, org-mode incluye [[https://orgmode.org/manual/Publishing.html][funcionalidad de publishing]] y lo único que hace falta para usarla es declarar un proyecto que indique de dónde leer los archivos .org y en dónde guardar los .html exportados:
+Para poder producir posts, necesitaba generar HTML que sea "Jekyll-friendly"[fn:1]. org-mode incluye [[https://orgmode.org/manual/Publishing.html][funcionalidad de publishing]] y lo único que hace falta para usarla es declarar un proyecto que indique de dónde leer los archivos .org y en dónde guardar los .html exportados:
 
 #+BEGIN_SRC emacs-lisp
 (setq org-publish-project-alist
@@ -62,7 +62,7 @@ tags: [blog, emacs]
 ---
 #+END_SRC
 
-Para automatizar esta tarea frecuente, escribí este comando (basado inicialmente en lo que encontré [[https://www.dougwoos.com/2013/12/24/posting-to-jekyll-with-emacs.html][acá]]):
+Para automatizar esta tarea frecuente, escribí este comando (partiendo de lo que encontré [[https://www.dougwoos.com/2013/12/24/posting-to-jekyll-with-emacs.html][acá]]):
 
 #+BEGIN_SRC emacs-lisp
 (defun org-blog-new-post (title)
@@ -83,7 +83,7 @@ Para automatizar esta tarea frecuente, escribí este comando (basado inicialment
     (insert "#+END_EXPORT\n\n")))
 #+END_SRC
 
-También agregué un comando para actualizar la fecha del post en el nombre y el contenido del archivo (más para practicar emacs-lisp que por necesidad, si vamos a ser honestos):
+También agregué un comando para actualizar la fecha del post en el nombre y el encabezado del archivo (más para practicar emacs-lisp que por necesidad, si vamos a ser honestos):
 
 #+BEGIN_SRC emacs-lisp
 (defun org-blog-reset-date ()

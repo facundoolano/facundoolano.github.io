@@ -19,16 +19,16 @@ Una de las razones por las que armé un nuevo blog es que trabajar con WordPress
 <h2 id="org4f33b5a">Setup</h2>
 <div class="outline-text-2" id="text-org4f33b5a">
 <p>
-Ya decidido a usar Emacs y org-mode, me pareció razonable buscar cómo integrarlos con Jekyll y Github Pages, para ahorrarme el trabajo y el costo de hosting y configuración del blog. Encontré <a href="https://carl.ac/blogging-with-emacs-org-github-pages/">este post</a>, que sigue un razonamiento muy parecido al mío, y lo usé como guía. Adicionalmente, la documentación de org-mode tiene <a href="https://orgmode.org/worg/org-tutorials/org-jekyll.html">una sección</a> dedicada específicamente a este escenario.
+Ya decidido a usar Emacs y org-mode, me pareció razonable buscar cómo integrarlos con Jekyll y Github Pages, para ahorrarme el trabajo y el costo de hosting y configuración del blog. Encontré <a href="https://carl.ac/blogging-with-emacs-org-github-pages/">este post</a>, que sigue un razonamiento muy parecido al mío, y lo usé como guía. Adicionalmente, la documentación de org-mode tiene <a href="https://orgmode.org/worg/org-tutorials/org-jekyll.html">un tutorial</a> dedicado específicamente a este escenario.
 </p>
 
 <p>
 Siguiendo el ejemplo de aquel post, hice un fork de <a href="https://beautifuljekyll.com/">BeautifulJekyll</a>,
-un template que se forkea directamente para servirlo con GitHub Pages y resuelve la mayoría de las necesidades básicas de un blog (layout, links, comentarios, analytics, etc.).
+un template pensado para GitHub Pages que resuelve la mayoría de las necesidades básicas de un blog (layout, links, comentarios, analytics, etc.).
 </p>
 
 <p>
-Para poder producir posts con org-mode, necesitaba producir HTML<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> "Jekyll-friendly". Para esto, org-mode incluye <a href="https://orgmode.org/manual/Publishing.html">funcionalidad de publishing</a> y lo único que hace falta para usarla es declarar un proyecto que indique de dónde leer los archivos .org y en dónde guardar los .html exportados:
+Para poder producir posts, necesitaba generar HTML que sea "Jekyll-friendly"<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>. org-mode incluye <a href="https://orgmode.org/manual/Publishing.html">funcionalidad de publishing</a> y lo único que hace falta para usarla es declarar un proyecto que indique de dónde leer los archivos .org y en dónde guardar los .html exportados:
 </p>
 
 <div class="org-src-container">
@@ -81,7 +81,7 @@ Para convertir un archivo de markdown, o en mi caso, de org-mode, en un post de 
 </div>
 
 <p>
-Para automatizar esta tarea frecuente, escribí este comando (basado inicialmente en lo que encontré <a href="https://www.dougwoos.com/2013/12/24/posting-to-jekyll-with-emacs.html">acá</a>):
+Para automatizar esta tarea frecuente, escribí este comando (partiendo de lo que encontré <a href="https://www.dougwoos.com/2013/12/24/posting-to-jekyll-with-emacs.html">acá</a>):
 </p>
 
 <div class="org-src-container">
@@ -105,7 +105,7 @@ Para automatizar esta tarea frecuente, escribí este comando (basado inicialment
 </div>
 
 <p>
-También agregué un comando para actualizar la fecha del post en el nombre y el contenido del archivo (más para practicar emacs-lisp que por necesidad, si vamos a ser honestos):
+También agregué un comando para actualizar la fecha del post en el nombre y el encabezado del archivo (más para practicar emacs-lisp que por necesidad, si vamos a ser honestos):
 </p>
 
 <div class="org-src-container">
