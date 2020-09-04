@@ -4,7 +4,7 @@
 ---
 layout: post
 title: "Blogging con Emacs y org-mode"
-date: 2020-09-03
+date: 2020-09-04
 tags: [blog, emacs]
 ---
 #+END_EXPORT
@@ -51,7 +51,7 @@ $ bundle install
 
 ** Workflow
 
-Para convertir un archivo de markdown, o en mi caso, de org-mode, en un post de Jekyll, hacen falta dos cosas: 1- prefijar el nombre del archivo con un timestamp (e.g. =2020-09-02-blogging-con-emacs-y-org-mode=) y 2- agregarle un encabezado con metadata:
+Para convertir un archivo de markdown, o en mi caso, de org-mode, en un post de Jekyll, hacen falta dos cosas: 1. prefijar el nombre del archivo con un timestamp (e.g. =2020-09-02-blogging-con-emacs-y-org-mode=) y 2. agregarle un encabezado con metadata:
 
 #+BEGIN_SRC yaml
 ---

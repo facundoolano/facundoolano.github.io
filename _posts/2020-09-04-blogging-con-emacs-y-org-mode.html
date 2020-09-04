@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Blogging con Emacs y org-mode"
-date: 2020-09-03
+date: 2020-09-04
 tags: [blog, emacs]
 ---
 
@@ -15,9 +15,9 @@ invertir algo de tiempo preparando mi editor para el proceso de escritura y publ
 Una de las razones por las que armé un nuevo blog es que trabajar con WordPress me daba escalofríos. Quería control de versiones para mis posts, tenerlos en GitHub en algún formato independiente de la plataforma, y, lo más importante, poder escribir en Emacs, el mismo editor que uso cotidianamente para programar. En particular, me interesaba usar <a href="https://orgmode.org/">org-mode</a> como lenguaje de markup. El objetivo es alcanzar un ciclo virtuoso (?) en el que escribo más seguido, aprendo más sobre org-mode y mejoro mi configuración de Emacs en el camino.
 </p>
 
-<div id="outline-container-org4f33b5a" class="outline-2">
-<h2 id="org4f33b5a">Setup</h2>
-<div class="outline-text-2" id="text-org4f33b5a">
+<div id="outline-container-orgd5edcff" class="outline-2">
+<h2 id="orgd5edcff">Setup</h2>
+<div class="outline-text-2" id="text-orgd5edcff">
 <p>
 Ya decidido a usar Emacs y org-mode, me pareció razonable buscar cómo integrarlos con Jekyll y Github Pages, para ahorrarme el trabajo y el costo de hosting y configuración del blog. Encontré <a href="https://carl.ac/blogging-with-emacs-org-github-pages/">este post</a>, que sigue un razonamiento muy parecido al mío, y lo usé como guía. Adicionalmente, la documentación de org-mode tiene <a href="https://orgmode.org/worg/org-tutorials/org-jekyll.html">un tutorial</a> dedicado específicamente a este escenario.
 </p>
@@ -63,11 +63,11 @@ $ bundle install
 </div>
 
 
-<div id="outline-container-org9729736" class="outline-2">
-<h2 id="org9729736">Workflow</h2>
-<div class="outline-text-2" id="text-org9729736">
+<div id="outline-container-orgac9d972" class="outline-2">
+<h2 id="orgac9d972">Workflow</h2>
+<div class="outline-text-2" id="text-orgac9d972">
 <p>
-Para convertir un archivo de markdown, o en mi caso, de org-mode, en un post de Jekyll, hacen falta dos cosas: 1- prefijar el nombre del archivo con un timestamp (e.g. <code>2020-09-02-blogging-con-emacs-y-org-mode</code>) y 2- agregarle un encabezado con metadata:
+Para convertir un archivo de markdown, o en mi caso, de org-mode, en un post de Jekyll, hacen falta dos cosas: 1. prefijar el nombre del archivo con un timestamp (e.g. <code>2020-09-02-blogging-con-emacs-y-org-mode</code>) y 2. agregarle un encabezado con metadata:
 </p>
 
 <div class="org-src-container">
