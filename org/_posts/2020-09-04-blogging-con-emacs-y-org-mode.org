@@ -21,7 +21,7 @@ Ya decidido a usar Emacs y org-mode, me pareció razonable buscar cómo integrar
 Siguiendo el ejemplo de aquel post, hice un fork de [[https://beautifuljekyll.com/][BeautifulJekyll]],
 un template pensado para GitHub Pages que resuelve la mayoría de las necesidades básicas de un blog (layout, links, comentarios, analytics, etc.).
 
-Para poder producir posts, necesitaba generar HTML que sea "Jekyll-friendly"[fn:1]. org-mode incluye [[https://orgmode.org/manual/Publishing.html][funcionalidad de publishing]] y lo único que hace falta para usarla es declarar un proyecto que indique de dónde leer los archivos .org y en dónde guardar los .html exportados:
+Para poder producir posts, necesitaba generar HTML que sea "Jekyll-friendly"[fn:1]. org-mode incluye [[https://orgmode.org/org.html#Exporting][funcionalidad de exportación]] (convertir documentos org a otros formatos como LaTeX, markdown y html) y [[https://orgmode.org/worg/org-tutorials/org-publish-html-tutorial.html][publishing]] (exportar jerarquías de documentos relacionados o "proyectos"). Lo único que hace falta en este caso es declarar un proyecto que indique de dónde se leen los archivos .org y en dónde hay que guardar los .html exportados:
 
 #+BEGIN_SRC emacs-lisp
 (setq org-publish-project-alist
@@ -57,7 +57,7 @@ Para convertir un archivo de markdown, o en mi caso, de org-mode, en un post de 
 ---
 layout: post
 title: "Blogging con Emacs y org-mode"
-date: 2020-09-02
+date: 2020-09-04
 tags: [blog, emacs]
 ---
 #+END_SRC
@@ -105,8 +105,8 @@ header."
 
 Para exportar el html uso =org-publish-current-project= y para ver el post localmente corro ~bundle exec jekyll serve~.
 
-+ [[https://raw.githubusercontent.com/facundoolano/facundoolano.github.io/master/org/_posts/2020-08-28-maestros-de-la-fatalidad.org][Así]] se ve el archivo .org de un post.
-+ [[https://github.com/facundoolano/facundoolano.github.io/blob/master/_posts/2020-08-28-maestros-de-la-fatalidad.html][Así]] queda el HTML exportado.
++ [[https://raw.githubusercontent.com/facundoolano/facundoolano.github.io/master/org/_posts/2020-08-31-la-magia-de-los-namespaces.org][Así]] se ve el archivo .org de un post.
++ [[https://github.com/facundoolano/facundoolano.github.io/blob/master/_posts/2020-08-31-la-magia-de-los-namespaces.html][Así]] queda el HTML exportado.
 + [[https://github.com/facundoolano/emacs.d/blob/master/modules/facundo-blog.el][Esta]] es la sección relevante de mi configuración de Emacs.
 
 #+HTML: <br>

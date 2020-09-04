@@ -28,7 +28,7 @@ un template pensado para GitHub Pages que resuelve la mayoría de las necesidade
 </p>
 
 <p>
-Para poder producir posts, necesitaba generar HTML que sea "Jekyll-friendly"<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>. org-mode incluye <a href="https://orgmode.org/manual/Publishing.html">funcionalidad de publishing</a> y lo único que hace falta para usarla es declarar un proyecto que indique de dónde leer los archivos .org y en dónde guardar los .html exportados:
+Para poder producir posts, necesitaba generar HTML que sea "Jekyll-friendly"<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>. org-mode incluye <a href="https://orgmode.org/org.html#Exporting">funcionalidad de exportación</a> (convertir documentos org a otros formatos como LaTeX, markdown y html) y <a href="https://orgmode.org/worg/org-tutorials/org-publish-html-tutorial.html">publishing</a> (exportar jerarquías de documentos relacionados o "proyectos"). Lo único que hace falta en este caso es declarar un proyecto que indique de dónde se leen los archivos .org y en dónde hay que guardar los .html exportados:
 </p>
 
 <div class="org-src-container">
@@ -74,7 +74,7 @@ Para convertir un archivo de markdown, o en mi caso, de org-mode, en un post de 
 <pre class="src src-yaml"><span style="color: #8D8D84; font-style: italic;">---</span>
 <span style="color: #BA36A5;">layout</span>: post
 <span style="color: #BA36A5;">title</span>: <span style="color: #008000;">"Blogging con Emacs y org-mode"</span>
-<span style="color: #BA36A5;">date</span>: 2020-09-02
+<span style="color: #BA36A5;">date</span>: 2020-09-04
 <span style="color: #BA36A5;">tags</span>: [blog, emacs]
 <span style="color: #8D8D84; font-style: italic;">---</span>
 </pre>
@@ -132,8 +132,8 @@ Para exportar el html uso <code>org-publish-current-project</code> y para ver el
 </p>
 
 <ul class="org-ul">
-<li><a href="https://raw.githubusercontent.com/facundoolano/facundoolano.github.io/master/org/_posts/2020-08-28-maestros-de-la-fatalidad.org">Así</a> se ve el archivo .org de un post.</li>
-<li><a href="https://github.com/facundoolano/facundoolano.github.io/blob/master/_posts/2020-08-28-maestros-de-la-fatalidad.html">Así</a> queda el HTML exportado.</li>
+<li><a href="https://raw.githubusercontent.com/facundoolano/facundoolano.github.io/master/org/_posts/2020-08-31-la-magia-de-los-namespaces.org">Así</a> se ve el archivo .org de un post.</li>
+<li><a href="https://github.com/facundoolano/facundoolano.github.io/blob/master/_posts/2020-08-31-la-magia-de-los-namespaces.html">Así</a> queda el HTML exportado.</li>
 <li><a href="https://github.com/facundoolano/emacs.d/blob/master/modules/facundo-blog.el">Esta</a> es la sección relevante de mi configuración de Emacs.</li>
 </ul>
 
