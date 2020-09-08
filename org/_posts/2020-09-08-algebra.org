@@ -4,7 +4,7 @@
 ---
 layout: post
 title: "Álgebra"
-date: 2020-09-01 15:05:39
+date: 2020-09-08
 tags: [ficción]
 ---
 #+END_EXPORT
@@ -32,7 +32,7 @@ Para cuando X_2 llega a las librerías, un par de meses después, X ya fue reduc
 
 Y aunque fue A quien inició el pleito, la prensa lo relata como un intento de X por recuperar la notoriedad: se trata de una continuación mediocre del juicio anterior, una pobre imitación de los hechos que A narra en su novela, reforzando así la idea del plagio, esgrimida astutamente por 723.
 
-Con el viento en contra, como si la opinión pública fuera en sí misma una sentencia, X pierde el juicio, pierde su dinero y pierde para siempre su interés en la literatura.
+Con el viento en contra, como si la opinión pública fuera en sí misma una sentencia, X pierde el juicio, pierde su dinero, pierde para siempre su interés en la literatura, etc.
 
 #+BEGIN_CENTER
 \ast{} \ast{} \ast{}
