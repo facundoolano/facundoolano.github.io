@@ -9,7 +9,7 @@ tags: [ficción]
 ---
 #+END_EXPORT
 
-X lee relatos de muchos autores. En cierto punto de su itinerario lector,  se cruza con A y lee uno de sus cuentos (A_1), que le gusta mucho, aunque todavía no se da cuenta. Según X, una historia le gusta cuando se encuentra evocando retazos de ella \mdash{}una situación, una descripción, una imagen\mdash{} meses o años después de haberla leído. X todavía no lo sabe, pero A_1 le gustó mucho. Lee otros relatos de A que no le gustan tanto y finalmente lo deja atrás.
+X lee relatos de muchos autores. En cierto punto de su itinerario lector,  se cruza con A y lee uno de sus cuentos (A_1), que le gusta mucho, aunque todavía no se da cuenta. Según X, una historia le gusta cuando se encuentra evocando retazos de ella —una situación, una descripción, una imagen— meses o años después de haberla leído. X todavía no lo sabe, pero A_1 le gustó mucho. Lee otros relatos de A que no le gustan tanto y finalmente lo deja atrás.
 
 Sigue leyendo y, en cierto punto, empieza a escribir sus propios cuentos. Primero escribe anécdotas autobiográficas, indescifrables para cualquiera que no sea él. Con trabajo, las mejora hasta hacerlas comprensibles pero no dejan de ser meras transcripciones de sus recuerdos; la suya no es una vida excepcional y X carece de los recursos técnicos para dotar de interés a lo cotidiano. Con trabajo, sin embargo, adquiere los recursos técnicos suficientes para reconocer, al leer sus cuentos, que son malos.
 
