@@ -1,0 +1,228 @@
+#+OPTIONS: toc:nil num:nil
+#+LANGUAGE: es
+#+BEGIN_EXPORT html
+---
+layout: post
+title: Las increíbles aventuras del señor tijeras
+excerpt: Quiero hacer el ejercicio borgeano de fingir que un lenguaje existe y describirlo brevemente.
+thumbnail-img: assets/img/funscript.jpg
+date: 2020-09-19 11:54:47
+tags: [programación]
+---
+#+END_EXPORT
+
+Este post va a ser un pastiche de [[https://facundoolano.wordpress.com/2016/12/09/this-is-unfortunate-and-were-stuck-with-it-forever/][uno anterior]], de la época en que programaba cotidianamente en JavaScript.
+Aquella vez empecé por citar a Douglas Crockford en la necesidad de elegir un subconjunto de la funcionalidad (/The Good Parts/)
+para sacar lo mejor del lenguaje. Después de publicado el libro de Crockford, JavaScript creció, se convirtió en un lenguaje
+diseñado "por comité", sumó mucha más funcionalidad (buena y mala) pero no retiró ninguna de las partes "feas", porque
+romper la compatibilidad es un lujo que JavaScript no puede darse. En fin, el problema original se acentuó:
+JavaScript es inconsistente y hace falta elegir un subconjunto de sus características para poder usarlo
+coherentemente[fn:1].
+
+Aquel post lo terminé diciendo que yo tenía mi subset "preferido" y que si pudiera romper la compatibilidad
+hacia atrás y hacer dos o tres pequeños cambios de sintaxis, podía incluso soñar un nuevo lenguaje que,
+sin alejarse demasiado del original, se ajustara mejor a mis preferencias. Ahora quiero hacer el ejercicio borgeano de fingir que ese
+otro lenguaje existe y describirlo brevemente.
+
+El lenguaje se llama FunScript[fn:2] y por comodidad voy a asumir como base [[https://www.w3schools.com/js/js_versions.asp][ECMAScript 5]], es decir JavaScript
+como lo conocíamos hasta el 2014, antes de que empiecen a "arreglarlo". La idea no es llegar a mi lenguaje ideal
+(que no tengo idea de cómo sería), sino ver cuánto se puede mejorar retirando elementos o reemplazándolos con
+alternativas más sencillas.
+
+** JavaScript: las partes nobles
+Voy a empezar por recortar cosas con total impunidad y sin dar explicaciones:
+
++ Las sentencias no necesitan ser terminadas con =;=.
++ =NaN= y =Infinity= se van.
+  + En consecuencia, las divisiones por cero producen un error.
++ No hay más /type coercion/. Es decir que =1 + '2'= es un error.
+  + En consecuencia, ==== y =!== funcionan como se espera y se puede prescindir de ===== y =!===.
++ Los operadores booleanos C-like (=&&=, =||=, =!=) son reemplazados por sus equivalentes en inglés =and=, =or= y =not=.
++ =new= y =this= se van.
++ =null= se va, =undefined= se queda[fn:3].
+
+No está muy lejos de las ideas de [[https://archive.org/details/javascriptgoodpa00croc_0/mode/2up][The Good Parts]] y [[https://es.slideshare.net/JSFestUA/js-fest-2018-douglas-crockford-the-better-parts][The Better Parts]]. Ahora que terminé con la /higienización/ pasemos
+a los cambios.
+
+** Funciones
+
+Las funciones se definen con el keyword =fun= en vez de =function= y devuelven la última expresión
+de su bloque[fn:4]:
+
+#+BEGIN_SRC javascript
+fun isEven(number) {
+  number % 2 == 0
+}
+#+END_SRC
+
+Admito que este cambio es un poco frívolo, pero tiene algunas ventajas: al ser más corto, el keyword =fun=
+resulta menos molesto de usar como parámetro, es decir: a nadie se le va a ocurrir la necesidad de introducir
+nueva sintaxis para las funciones anónimas:
+
+#+BEGIN_SRC javascript
+isOdd = fun (number) {
+  not isEven(number)
+}
+#+END_SRC
+
+Por otro lado, este keyword nos da la excusa perfecta para nombrar al lenguaje FunScript, por no mencionar que es de público conocimiento que leer la palabra =fun= con frecuencia libera endorfinas.
+
+Si se quiere hacer un /early return/, se puede usar la keyword explícitamente:
+
+#+BEGIN_SRC javascript
+fun evenOrOdd (number) {
+  if isEven(number) {
+    return "even"
+  }
+  "odd"
+}
+#+END_SRC
+
+Aunque, ya que estamos, el =if= es una expresión:
+
+#+BEGIN_SRC javascript
+fun evenOrOdd (number) {
+  if isEven(number) {
+    "even"
+  } else {
+    "odd"
+  }
+}
+
+evenOrOdd(1) // "odd"
+evenOrOdd(2) // "even"
+#+END_SRC
+
+De las versiones nuevas de JavaScript me voy a robar [[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters][rest]] y [[https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Default_parameters][default]] parameters:
+
+#+BEGIN_SRC javascript
+fun sum (...numbers) {
+  numbers.reduce(fun (number, acc) {
+    acc + number
+  })
+}
+
+sum(1) // 1
+sum (1, 2, 3) // 6
+
+fun multiply (a, b=1) {
+  a * b
+}
+
+multiply(3) // 3
+multiply(3, 2) // 6
+#+END_SRC
+
+Pero a cambio elimino =arguments=, y los llamados a funciones con un número de parámetros distinto
+al declarado en la firma produce un error:
+
+#+BEGIN_SRC javascript
+multiply(3, 3, 3) // TypeError: one() takes no arguments (1 given)
+#+END_SRC
+
+** Variables y scope
+
+De Rust me voy a robar la idea de que los bindings son inmutables a menos que
+se explicite lo contrario. Es decir que por default las asignaciones funcionan como
+=const= en ES6:
+
+#+BEGIN_SRC javascript
+age = 3
+olderAge = age + 3
+age = 10 // TypeError: Assignment to constant variable.
+#+END_SRC
+
+Para definir variables se usa el keyword =var=, aunque tengan /block scope/, es decir
+que funcionan como =let= en ES6:
+
+#+BEGIN_SRC javascript
+var newAge = 3
+newAge = 10 // ok
+#+END_SRC
+
+FIXME arreglar el ejemplo anterior para ilustrar el punto del scope
+
+TODO los argumentos de las funciones son bindings inmutables
+
+** Arrays y loops
+- Más o menos lo mismo, pero sin las operaciones mutables.
+- Ejemplo push (pop?)
+-
+
+Una de las cosas que más me gustan de JavaScript son las "high-order functions" del Array.
+map, reduce, forEach, filter y find. Con esas funciones y recursión deberíamos poder prescindir de
+todas las keywords de loops.
+
+No hay for of / for in
+#+BEGIN_SRC
+
+#+END_SRC
+
+tampoco hay for estilo C. Usar Array.range() en su lugar
+#+BEGIN_SRC
+
+#+END_SRC
+
+Ni tampoco while/do while
+
+** Objetos
+
++ funcionan como maps/dicts en otros lenguajes
++ las keys pueden ser de cualquier tipo
++ si son strings se pueden acceder usando dot notation
++ No existe "this" ni prototypes. Pero el objeto puede tener métodos seteando funciones a sus campos, y con closures se puede llevar un estado interno:
+
+#+BEGIN_SRC javascript
+fun Counter () {
+  var value = 0
+  {
+    inc: fun () { value += 1 },
+    dec: fun () { value -= 1 },
+    value: fun () { value }
+  }
+}
+
+c = Counter()
+c.value() // 0
+c.inc() // 1
+c.inc() // 2
+c.dec() // 1
+#+END_SRC
+
+// FIXME tiene sentido esto?
++ al igual que otros valores, son inmutables por default, y la inmutabilidad no es solo de la variable si no del objeto en sí mismo
++ si los definimos como var podemos mutarlos
++ pero al pasarlos por funciones son necesariamente inmutables
+
+** Etcétera
+
+** Sets (FIXME sacar)
+Los sets no tienen sintaxis especial, lo que sí es importante es que soporten operaciones de conjuntos.
+Parece una obviedad, pero la última vez que chequeé no era el caso en la implementación de JavaScript.
+
+#+BEGIN_SRC javascript
+set1, set2 = Set([1, 2]), Set([1, 3])
+set1.union(set2) // Set([1, 2, 3])
+set1.difference(set2) // Set([2])
+set1.intersection(set2) // Set([1])
+#+END_SRC
+
+Estuve tentado de sobrecargar los operadores =+=, =-= y =and= como alternativa a esos métodos, pero ante la duda, /less is more/.
+
+** notas
+https://ramdajs.com/
+https://learnxinyminutes.com/docs/javascript/
+TODO repasar el "catálogo" de js the good parts
+https://es.slideshare.net/JSFestUA/js-fest-2018-douglas-crockford-the-better-parts
+
+- Como tal todo lo que sigue es altamente inchequeable y posiblemente no haya pensado a fondo todas las consecuencias.
+
+* Footnotes
+
+[fn:1] Supongo que posiblemente este sea un problema ya resuelto en el ecosistema actual de JavaScript, que desconozco. Pero como yo me quedé con la película 2007-2017 del lenguaje, voy a seguir adelante con el razonamiento.
+
+[fn:2] Para este ejercicio podemos ignorar alegremente el hecho de que [[https://github.com/ZachBray/FunScript][ya existe un lenguaje con ese nombre]].
+
+[fn:3] Sé que hay cierto consenso en que tener un valor indefinido trae consecuencias indeseables, pero para ser sincero no es una discusión sobra la que no me interioricé, así que simplemente voy a reincidir en el error de todos los lenguajes que usé.
+
+[fn:4] En estos ejemplos uso =isEven= y =isOdd= a modo ilustrativo. Desde luego que en un proyecto real, aprovechando que FunScript es completamente interoperable con JavaScript, aprovecharía los paquetes [[https://www.npmjs.com/package/is-even][is-even]] y [[https://www.npmjs.com/package/is-odd][is-odd]] en vez de reinventar la rueda.
