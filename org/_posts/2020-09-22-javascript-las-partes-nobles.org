@@ -121,7 +121,7 @@ Pero, a cambio, elimino =arguments= y los llamados a funciones con un número de
 al declarado producen un error:
 
 #+BEGIN_SRC javascript
-multiply(3, 3, 3) // TypeError: one() takes no arguments (1 given)
+multiply(3, 3, 3) // TypeError: multiply() takes no arguments (1 given)
 #+END_SRC
 
 ** Variables y scope
