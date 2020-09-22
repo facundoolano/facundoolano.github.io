@@ -8,17 +8,17 @@ tags: [programación]
 ---
 
 <p>
-Este post es un pastiche de <a href="https://facundoolano.wordpress.com/2016/12/09/this-is-unfortunate-and-were-stuck-with-it-forever/">uno anterior</a>, de la época en que programaba cotidianamente en JavaScript.
-Aquella vez empecé por citar a Douglas Crockford acerca de la necesidad de elegir un subconjunto de la funcionalidad (<i>The Good Parts</i>)
-para sacar lo mejor del lenguaje. Después de publicado el libro de Crockford, JavaScript creció, se convirtió en un lenguaje
+Este post es un pastiche de <a href="https://facundoolano.wordpress.com/2016/12/09/this-is-unfortunate-and-were-stuck-with-it-forever/">uno anterior</a>, de la época en que programaba cotidianamente en Node.js.
+Aquella vez empecé por citar <a href="https://archive.org/details/javascriptgoodpa00croc_0/mode/2up"><i>Javascript: The Good Parts</i></a> acerca de la necesidad de elegir un subconjunto para sacar lo mejor del lenguaje.
+En los años que siguieron a la publicación del libro de Crockford, JavaScript creció, se convirtió en un lenguaje
 diseñado "por comité", sumó mucha más funcionalidad (buena y mala) pero no retiró ninguna de las partes "feas", porque
 romper la compatibilidad es un lujo que JavaScript no puede darse. En fin, el problema original se acentuó:
-JavaScript es inconsistente y hace falta elegir un subconjunto de sus características para poder usarlo
+JavaScript es inconsistente y hace falta elegir un subconjunto de sus features para poder usarlo
 coherentemente, lo que se suele resolver en la práctica con linters.
 </p>
 
 <p>
-Aquel post lo terminaba diciendo que yo tenía mi subset "preferido" y que si pudiera romper la compatibilidad
+Aquel post lo terminaba diciendo que yo tenía mi subset "preferido" y que, si pudiera romper la compatibilidad
 hacia atrás y hacer dos o tres pequeños cambios de sintaxis, podía incluso imaginar un nuevo lenguaje que,
 sin alejarse demasiado del original, se ajustara mejor a mis preferencias. Ahora quiero hacer el ejercicio borgeano de fingir que ese
 otro lenguaje existe y describirlo brevemente.
@@ -33,8 +33,8 @@ otro lenguaje existe y describirlo brevemente.
 </div>
 
 <p>
-El lenguaje se llama FunScript<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> y, por comodidad, voy a asumir como base <a href="https://www.w3schools.com/js/js_versions.asp">ECMAScript 5</a>, es decir: JavaScript
-como lo conocíamos hasta el 2014, antes de que empiecen a "arreglarlo". La idea no es llegar a mi lenguaje ideal
+El lenguaje se llama FunScript<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup> y, por comodidad, voy a tomar como base <a href="https://www.w3schools.com/js/js_versions.asp">ECMAScript 5</a>, es decir: JavaScript
+como lo conocíamos hasta el 2014, antes de que empezaran a "arreglarlo". La idea no es llegar a mi lenguaje ideal
 (que no tengo idea de cómo sería), sino ver cuánto se puede mejorar retirando elementos o reemplazándolos con alternativas más sencillas.
 </p>
 
@@ -61,7 +61,7 @@ Voy a empezar por recortar cosas con total impunidad y sin dar explicaciones:
 </ul>
 
 <p>
-Nada muy lejos de las ideas de <a href="https://archive.org/details/javascriptgoodpa00croc_0/mode/2up">The Good Parts</a> y <a href="https://es.slideshare.net/JSFestUA/js-fest-2018-douglas-crockford-the-better-parts">The Better Parts</a>. Ahora que terminé con la <i>higienización</i> inicial, pasemos
+Nada muy lejos de las ideas de <i>The Good Parts</i> y <a href="https://es.slideshare.net/JSFestUA/js-fest-2018-douglas-crockford-the-better-parts"><i>The Better Parts</i></a>. Ahora que terminé con la <i>higienización</i> inicial, pasemos
 a los cambios.
 </p>
 </div>
@@ -71,7 +71,7 @@ a los cambios.
 <h2 id="org0847a2a">Funciones</h2>
 <div class="outline-text-2" id="text-org0847a2a">
 <p>
-Las funciones se definen con el keyword <code>fun</code> en vez de <code>function</code> y devuelven la última expresión
+Las funciones se definen con la keyword <code>fun</code> en vez de <code>function</code> y devuelven la última expresión
 de su bloque<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>:
 </p>
 
@@ -83,8 +83,8 @@ de su bloque<sup><a id="fnr.3" class="footref" href="#fn.3">3</a></sup>:
 </div>
 
 <p>
-Admito que este cambio es un poco frívolo, pero tiene algunas ventajas: al ser más corto, el keyword <code>fun</code>
-resulta menos molesto de usar en una expresión, es decir: a nadie se le va a ocurrir la necesidad de introducir
+Admito que este cambio es un poco frívolo, pero tiene algunas ventajas: al ser más corta, la keyword <code>fun</code>
+resulta menos molesta de usar en una expresión, es decir: a nadie se le va a ocurrir la necesidad de introducir
 nueva sintaxis para las funciones anónimas:
 </p>
 
@@ -96,7 +96,8 @@ nueva sintaxis para las funciones anónimas:
 </div>
 
 <p>
-Por otro lado, este keyword nos da la excusa perfecta para nombrar al lenguaje FunScript. Por no mencionar que es de público conocimiento que leer la palabra <code>fun</code> con frecuencia libera endorfinas.
+Por otro lado, esta keyword nos da la excusa perfecta para nombrar al lenguaje <i>FunScript</i>.
+Por no mencionar que es de público conocimiento que leer la palabra <code>fun</code> con frecuencia libera endorfinas.
 </p>
 
 <p>
@@ -155,8 +156,8 @@ multiply(3, 2) <span style="color: #8D8D84;">// </span><span style="color: #8D8D
 </div>
 
 <p>
-Pero a cambio elimino <code>arguments</code>, y los llamados a funciones con un número de parámetros distinto
-al declarado produce un error:
+Pero, a cambio, elimino <code>arguments</code> y los llamados a funciones con un número de parámetros distinto
+al declarado producen un error:
 </p>
 
 <div class="org-src-container">
@@ -183,7 +184,7 @@ age = 10 <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; fo
 </div>
 
 <p>
-Para definir variables se usa el keyword <code>var</code>, aunque su comportamiento corresponde al de <code>let</code> en JavaScript,
+Para definir variables se usa la keyword <code>var</code>, aunque su comportamiento corresponde al de <code>let</code> en JavaScript,
 es decir tienen scope de bloque:
 </p>
 
@@ -254,9 +255,9 @@ sum = array.reduce(fun (i, acc) {
 Podemos usar <code>Array.range()</code> en lugar del <code>for</code> clásico de C:
 </p>
 <div class="org-src-container">
-<pre class="src src-javascript">Array.range(10).forEach(fun (i) {
+<pre class="src src-javascript">Array.range(5).forEach(fun (i) {
     console.log(i)
-})
+}) <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">0 1 2 3 4</span>
 </pre>
 </div>
 
@@ -308,9 +309,9 @@ Así como los bindings son constantes por default, los objetos asignados a const
 
 <div class="org-src-container">
 <pre class="src src-javascript">obj = {}
-obj = {value: 10} <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">TypeError: Assignment to constant variable.</span>
-obj.value = 10 <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">TypeError: Assignment to constant variable.</span>
-obj[<span style="color: #008000;">'another'</span>] = 5 <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">TypeError: Assignment to constant variable.</span>
+obj = {value: 10} <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">TypeError: Cannot assign to read only property</span>
+obj.value = 10 <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">TypeError: Cannot assign to read only property</span>
+obj[<span style="color: #008000;">'another'</span>] = 5 <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">TypeError: Cannot assign to read only property</span>
 
 <span style="color: #0000FF;">var</span> <span style="color: #BA36A5;">obj2</span> = {}
 obj2 = {value: 10}
@@ -325,7 +326,7 @@ Como con otros valores, las objetos recibidos como argumentos de funciones son c
 
 <div class="org-src-container">
 <pre class="src src-javascript">fun irrespective (obj) {
-  obj.value = 10 <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">TypeError: Assignment to constant variable.</span>
+  obj.value = 10 <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">TypeError: Cannot assign to read only property</span>
 }
 </pre>
 </div>
@@ -351,6 +352,10 @@ c.inc() <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; fon
 c.dec() <span style="color: #8D8D84;">// </span><span style="color: #8D8D84; font-style: italic;">1</span>
 </pre>
 </div>
+
+<p>
+Fin.
+</p>
 </div>
 </div>
 <div id="footnotes">
