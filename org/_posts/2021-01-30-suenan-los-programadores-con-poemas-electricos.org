@@ -52,7 +52,7 @@ Si suscribimos a la idea de /Refactoring/, el código nunca está terminado, sie
 \ast{} \ast{} \ast{}
  #+END_CENTER
 
-En el afán de enojar a un grupo mayor de personas, podría cerrar diciendo que algunos criterios comunes en la programación son igualmente aplicables a la escritura en prosa: pienso en /divide and conquer/, /keep it simple, stupid/, /don't repeat yourself/. Ciertamente, yo escribo como si estuviera programando; quizás eso explique la tendencia de mis textos a componerse de secuencias de párrafos aislados, secuencias que se diluyen hacia al final y terminan abruptamente, como esta.
+En el afán de enojar a un grupo mayor de personas, podría cerrar diciendo que algunos criterios comunes de la programación son igualmente aplicables a la escritura en prosa: /divide and conquer/, /keep it simple, stupid/, /don't repeat yourself/. Ciertamente, yo escribo como si estuviera programando; quizás eso explique la tendencia de mis textos a componer secuencias de párrafos levemente acoplados, secuencias que se diluyen hacia al final y terminan abruptamente, como esta.
 
 * Footnotes
 
