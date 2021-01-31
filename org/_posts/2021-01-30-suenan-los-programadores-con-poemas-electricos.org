@@ -20,7 +20,7 @@ Si aceptamos esto, ya no alcanza con preocuparnos por la "legibilidad" ---poner 
 \ast{} \ast{} \ast{}
  #+END_CENTER
 
-Es un lugar común de los escritores decir que no piensan en sus lectores cuando escriben, que lo hacen para sí mismos, quizás como una manera de demostrar que no hacen concesiones a los intereses del público o del mercado. Pero lo cierto es que todos escribimos para ser leídos, aunque nuestro lector ideal no se corresponda con alguien concreto, aunque todavía no haya nacido; siquiera inconscientemente, la escritura conlleva la construcción de un lector modelo, es decir, un lector imaginario que orienta las elecciones del autor, por ejemplo el nivel de detalle que debe proveer para que el texto pueda ser interpretado[fn:3].
+Es un lugar común de los escritores decir que no piensan en sus lectores cuando escriben, que lo hacen para sí mismos, quizás como una manera de demostrar que no hacen concesiones a los intereses del público o del mercado. Pero lo cierto es que todos escribimos para ser leídos, aunque nuestro lector ideal no se corresponda con alguien concreto, aunque todavía no haya nacido; siquiera inconscientemente, la escritura conlleva la construcción de un lector modelo, es decir, un lector imaginario que orienta las elecciones del autor, por ejemplo la del nivel de detalle que debe proveer para que el texto sea interpretado[fn:3].
 
 Para un programador profesional, el lector modelo debería aproximar no solo a sus actuales colegas sino a su yo futuro, a cualquier futuro responsable del código, incluso a quien tenga que consultarlo ocasionalmente en busca de información. ¿Cómo podríamos ponernos en los zapatos de semejante conjunto de personas abstractas? No creo que haya un método satisfactorio; lo mejor que se me ocurre es imaginarse a uno mismo abordando el código con el contexto y el conocimiento del que disponía uno, dos, cinco años atrás. No importa cuánto lo intentemos, es imposible producir código accesible para todo el mundo; se trata más bien de decidir conscientemente, sin frivolidad, a quién se deja afuera.
 
@@ -32,6 +32,10 @@ El escritor de ficción tiene la tarea improbable de equilibrar un sistema infin
 
 A medida que escribimos el código y sobre todo durante la etapa de corrección (cuando el problema está resuelto en nuestra cabeza, el programa ya funciona y podemos reorganizarlo  en la forma que mejor comunique la solución), deberíamos hacer el intento de mirarlo con los ojos de nuestro lector modelo. ¿Qué va a ver una persona cuando liste el directorio del proyecto o entre a GitHub, cuando lea el README y siga los links que le ofrecemos, cuando abra un archivo y lea su encabezado y las primeras funciones hacia las que tratamos de llamar su atención? ¿Qué tan bien lograremos transmitir nuestra idea a alguien que recorra ese camino?
 
+#+BEGIN_CENTER
+\ast{} \ast{} \ast{}
+ #+END_CENTER
+
 Los escritores profesionales suelen trabajar con un editor; alguien que puede dar impresiones, intercambiar ideas con el autor, sugerir (o exigir) cambios[fn:4]. Se trata de un lector concreto que complementa al lector modelo de la etapa creativa; creo que este rol se asemeja un poco al del colega que hace un /peer review/ cuando el código todavía está en desarrollo[fn:5].
 
 #+BEGIN_CENTER
@@ -42,7 +46,13 @@ Hay autores que recomiendan tomar distancia del texto después de escribir el pr
 
 Los programadores no podemos permitirnos olvidar el código por un tiempo; en la mayoría de los casos queremos usarlo tan rápido como sea posible, incluso antes. Hay mucho potencial de mejora en el pasaje a producción, mucho más de lo que la sola distancia con el código puede ofrecernos. Esto no invalida del todo el método del cajón, sin embargo: para nosotros, pasar el código a producción de alguna manera /es/ dejarlo en el cajón.
 
-Si suscribimos a la idea de /Refactoring/, el código nunca está terminado, siempre es una buena idea tomar un programa que funciona y pulirlo, mejorar su estructura. Después del desarrollo inicial de un programa, después de ponerlo en uso y corregirlo, cuando consideramos que la funcionalidad es aceptable, podemos olvidarnos del código por un tiempo; podemos volver a él, meses más tarde, evaluarlo con el beneficio de la distancia, encontrar oportunidades de mejora, refactorizar.
+Si suscribimos a la idea de /Refactoring/, el código nunca está terminado, siempre es posible tomar un programa que funciona y pulirlo, mejorar su estructura. Después del desarrollo inicial de un programa, después de ponerlo en uso y corregirlo, cuando consideramos que la funcionalidad es aceptable, podemos olvidarnos del código por un tiempo; podemos volver a él, meses más tarde, evaluarlo con el beneficio de la distancia, encontrar oportunidades de mejora, refactorizar.
+
+#+BEGIN_CENTER
+\ast{} \ast{} \ast{}
+ #+END_CENTER
+
+En el afán de enojar a un grupo mayor de personas, podría cerrar diciendo que algunos criterios comunes en la programación son igualmente aplicables a la escritura en prosa: pienso en /divide and conquer/, /keep it simple, stupid/, /don't repeat yourself/. Ciertamente, yo escribo como si estuviera programando; quizás eso explique la tendencia de mis textos a componerse de secuencias de párrafos aislados, secuencias que se diluyen hacia al final y terminan abruptamente, como esta.
 
 * Footnotes
 
