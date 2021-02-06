@@ -1,4 +1,4 @@
-#+OPTIONS: toc:nil num:nil
+#+OPTIONS: toc:nil num:nil ^:t
 #+LANGUAGE: es
 #+BEGIN_EXPORT html
 ---
