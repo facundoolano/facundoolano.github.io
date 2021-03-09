@@ -1,0 +1,36 @@
+#+OPTIONS: toc:nil num:nil
+#+LANGUAGE: es
+#+BEGIN_EXPORT html
+---
+layout: post
+title: "Apocalipsis"
+subtitle: "Notas de lectura"
+date: 2021-03-07 13:17:39
+tags: [literatura]
+---
+#+END_EXPORT
+
+* 1
+No sé qué es lo primero que leí ni el primer libro que me gustó, pero sí me acuerdo con precisión cuándo fui por primera vez blanco de la industria editorial, cuándo me convertí en un /consumidor/ de libros: paseando por un shopping, creo que era el Plaza Oeste de Hurlingham, posiblemente a la salida del cine, alguien me alcanzó un volante promocionando una nueva colección de libros juveniles: /Fantasmas de Fear Street/. Había algo en ese volante que me enganchó inmediatamente, serían las imágenes coloridas o la tipografía informal ---que ahora me parece grotesca--- o las ilustraciones de las tapas; esos libros no tenían nada que ver con la miscelánea de páginas quebradizas y olor a humedad de la biblioteca de mi casa, ni con el material ineludiblemente educacional que circulaba por el colegio, libros que se prescriben la vitamina C, porque leer hace bien; lo que vendía el volante se parecía más a un cómic o un álbum de figuritas o a un juguete. Debo haber manifestando mi interés de una u otra forma pero mis viejos nunca hacían compras /on the spot/, solo en fechas predeterminadas, así que fue recién el verano siguiente que recibí no uno sino dos libros de esa colección como regalo de Reyes.
+
+Al primero, /Escóndete y Grita/, lo devoré en un par de días de vacaciones en San Clemente; la narración tenía suspenso, los protagonistas eran de mi edad y el ambiente parecido al de algunos programas de televisión ---ese estilo de ficción que asume que el universo empieza y termina en los Estados Unidos---, todo tamizado por una traducción española. Leí el segundo igual de rápido y durante los años siguientes me encargué de comprar cada uno de los libros de la colección, tal como se los listaba en las contratapas, como si la experiencia pudiera realizarse únicamente habiéndolos leído a todos. Lo cierto es que, aunque la mayoría me gustaba, ninguno me causó un impacto semejante al primero; después de diez o veinte libros mi interés se fue diluyendo y se hizo obvio, incluso para mi ojo inexperto, que se repetían ciertas fórmulas y que esas fórmulas ya no funcionaban conmigo. Seguramente me hubiera venido bien a esa altura pasar a leer ficción "para adultos" pero, así como años más tarde nadie me avisó que después de los Beatles había que escuchar a Pink Floyd, me faltó ese hermano mayor que me pasara el dato de leer a Stephen King.
+
+Muchos años después, cargué la pila de /Fantasmas de Fear Street/ en la mochila, los vendí en un puesto del Parque Rivadavia y usé la plata en otro puesto para comprar algún libro del /Señor de los Anillos/, que fue la siguiente colección que abordé con fanatismo, impulsado más por el auge de las películas que por interés en la lectura.
+
+* 2
+
+A la obra de Stephen King ingresé de la manera más heterodoxa posible,
+
+Ingreso a S.K. + Compra por ML
+
+<traduccion española? mundo yanqui?>
+
+<prodigio técnico>
+
+1. narraciones paralelas que convergen / SS / Lost / Spoiler
+
+<LOTR en Apocalipsis>
+
+* 3
+
+Supergripe / Covid en buenos aires (eternauta?)
