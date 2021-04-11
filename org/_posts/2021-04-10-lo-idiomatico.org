@@ -216,11 +216,19 @@ Si bien podría escribir una solución casi idéntica a la de Python...
 
 # TODO codigo imperativo
 
-En mi corazón JavaScript siempre va a ser un lenguaje funcional (/the first functional language to go mainstream/):
+...en mi corazón JavaScript siempre va a ser un lenguaje funcional (/the first lambda language to go mainstream/):
 
 # TODO codigo funcional
 
 Claro que todo se puede llevar demasiado lejos. Durante un tiempo tuve cierta fanatización con la biblioteca [[https://ramdajs.com/][Ramda.js]] y empecé a producir un código que puede gustar o no, pero ciertamente no es idiomático. El mejor es ejemplo es [[https://github.com/facundoolano/aso/blob/master/lib/visibility.js][mi paquete de App Store Optimization]]: la escribí completamente en términos de transformaciones de datos con Ramda y el resultado, para bien o para mal, fue que logré que todo el mundo se abstuviera para siempre de mandar un Pull-Request a ese repositorio.
 
 ** Posdata: Ejercicios de estilo
-# link a videira lopes
+Hay un libro que sigue una premisa parecida al repositorio de José Valim. Se llama [[https://www.routledge.com/Exercises-in-Programming-Style/Lopes/p/book/9780367350208][Exercises in programming style]], inspirado por
+el [[https://en.wikipedia.org/wiki/Exercises_in_Style][libro de ejercicios de estilo]] de Raymond Queneau. Ahí se usa Python no en forma idiomática sino como /lingua franca/ para resolver un mismo problema
+de muchas maneras posibles y en el proceso hacer un repaso de la historia de la programación.
+
+#+begin_quote
+In the universe of all things a good programmer must know, I see collections of programming styles as being as important as any collection of data structures and algorithms, but with a focus on human effects rather than on computing effects. Programs convey information not just to the computers but, more importantly, to the people who read them. As with any form of expression, the consequences of *what* is being said are shaped and influenced by *how* they are being said. An advanced programmer needs not be able to just write correct programs that perform well; he/she needs to be able to choose appropriate styles for expressing those programs for a variety of purposes.
+#+end_quote
+
+Los ejercicios se pueden ver [[https://github.com/crista/exercises-in-programming-style][en este repositorio]].
