@@ -1,0 +1,236 @@
+---
+layout: post
+title: "Lo idiomático"
+date: 2021-04-10 14:47:39
+tags: [programación]
+---
+
+<p>
+La semana pasada circuló <a href="https://github.com/josevalim/nested-data-structure-traversal">un repositorio de José Valim</a> que planteaba un problema sencillo de programación (recorrer y "anotar" una estructura de datos anidada) e invitaba a enviar soluciones usando distintos lenguajes. Fue simpático ver cómo crecían las contribuciones con el correr de las horas.
+</p>
+
+<p>
+El ejercicio me pareció interesante porque el problema es suficientemente fácil como para entenderlo y encontrarle una solución rápidamente y después divagar indefinidamente sobre las distintas formas de expresarla. En particular, me entretuve pensando cómo cambiaría mi propia solución según cuál de los lenguajes que frecuento usara en cada caso. Abajo transcribo el proceso. Para más contexto, sugiero leer la <a href="https://github.com/josevalim/nested-data-structure-traversal#the-problem">descripción del problema</a>. El código del que extraje los ejemplos siguientes se puede encontrar acá.
+</p>
+
+<div id="outline-container-orge601fc2" class="outline-2">
+<h2 id="orge601fc2">Python</h2>
+<div class="outline-text-2" id="text-orge601fc2">
+<p>
+La solución que escribí intuitivamente en Python es casi idéntica al <a href="https://github.com/josevalim/nested-data-structure-traversal/blob/bce81f759dcb4c1efa113e3155520099da7cb300/python/for-in.py#L28-L42">ejemplo provisto en el repositorio</a>, lo que era esperable porque tendría que haber forzado las cosas para llegar a algo distinto:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #BA36A5;">section_position</span> = 1
+<span style="color: #BA36A5;">lesson_position</span> = 1
+<span style="color: #0000FF;">for</span> section <span style="color: #0000FF;">in</span> sections:
+    <span style="color: #BA36A5;">section</span>[<span style="color: #008000;">"position"</span>] = section_position
+    <span style="color: #BA36A5;">section_position</span> += 1
+
+    <span style="color: #0000FF;">if</span> section[<span style="color: #008000;">"reset_lesson_position"</span>]:
+        <span style="color: #BA36A5;">lesson_position</span> = 1
+
+    <span style="color: #0000FF;">for</span> lesson <span style="color: #0000FF;">in</span> section[<span style="color: #008000;">"lessons"</span>]:
+        <span style="color: #BA36A5;">lesson</span>[<span style="color: #008000;">"position"</span>] = lesson_position
+        <span style="color: #BA36A5;">lesson_position</span> += 1
+
+<span style="color: #0000FF;">print</span>(sections)
+</pre>
+</div>
+
+<p>
+Encuentro que Python minimiza la distancia entre lo que pienso y termino por escribir. Supongo que se debe en parte a la expresividad del lenguaje pero también a que la forma en que aprendí a razonar los algoritmos cuando estaba empezando a programar se ajusta bastante al estilo imperativo que fomenta Python.
+</p>
+
+<p>
+Para ser justo en las comparaciones con los otros lenguajes, voy a agregar algunas restricciones: el código no puede estar suelto en el módulo, ensuciando el scope global, sino que hay que agruparlo en funciones; y la función no puede mutar la estructura de input sino que tiene que construir una nueva:
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #0000FF;">def</span> <span style="color: #006699;">traverse</span>(sections):
+    <span style="color: #BA36A5;">result</span> = []
+    <span style="color: #BA36A5;">section_position</span> = 1
+    <span style="color: #BA36A5;">lesson_position</span> = 1
+    <span style="color: #0000FF;">for</span> section <span style="color: #0000FF;">in</span> sections:
+        <span style="color: #BA36A5;">section</span> = {**section, <span style="color: #008000;">"position"</span>: section_position}
+        <span style="color: #BA36A5;">section_position</span> += 1
+
+        <span style="color: #0000FF;">if</span> section[<span style="color: #008000;">"reset_lesson_position"</span>]:
+            <span style="color: #BA36A5;">lesson_position</span> = 1
+
+        <span style="color: #BA36A5;">lessons</span> = []
+        <span style="color: #0000FF;">for</span> lesson <span style="color: #0000FF;">in</span> section[<span style="color: #008000;">"lessons"</span>]:
+            <span style="color: #BA36A5;">lesson</span> = {**lesson, <span style="color: #008000;">"position"</span>: lesson_position}
+            <span style="color: #BA36A5;">lesson_position</span> += 1
+            lessons.append(lesson)
+
+        <span style="color: #BA36A5;">section</span>[lessons] = lessons
+        result.append(section)
+
+    <span style="color: #0000FF;">return</span> result
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3b9d16c" class="outline-2">
+<h2 id="org3b9d16c">Erlang</h2>
+<div class="outline-text-2" id="text-org3b9d16c">
+<p>
+La implementación en Erlang, donde los datos son inmutables y no hay sentencias iterativas, me requiere un poco más de esfuerzo mental, aunque con los años se volvió relativamente intuitivo pensar el problema en forma recursiva.
+</p>
+
+<p>
+Sé que voy a necesitar una función que procese un elemento de la lista a la vez&#x2026;
+</p>
+<div class="org-src-container">
+<pre class="src src-erlang"><span style="color: #006699;">traverse_sections</span>([<span style="color: #BA36A5;">Section</span> | <span style="color: #BA36A5;">Rest</span>], <span style="color: #8D8D84;">% </span><span style="color: #8D8D84; font-style: italic;">...</span>
+</pre>
+</div>
+
+<p>
+&#x2026;que voy a tener que acumular los resultados en otra lista y llamar a la misma función con el resto de las secciones&#x2026;
+</p>
+
+<div class="org-src-container">
+<pre class="src src-erlang"><span style="color: #006699;">traverse_sections</span>([<span style="color: #BA36A5;">Section</span> | <span style="color: #BA36A5;">Rest</span>], <span style="color: #BA36A5;">Output</span> <span style="color: #8D8D84;">% </span><span style="color: #8D8D84; font-style: italic;">...</span>
+    <span style="color: #8D8D84;">%% </span><span style="color: #8D8D84; font-style: italic;">...</span>
+    <span style="color: #6434A3;">traverse_sections</span>(<span style="color: #BA36A5;">Rest</span>, [<span style="color: #BA36A5;">SectionWithPositions</span> | <span style="color: #BA36A5;">Output</span>], <span style="color: #8D8D84;">%</span><span style="color: #8D8D84; font-style: italic;">....</span>
+</pre>
+</div>
+
+<p>
+&#x2026;y que al terminar de procesar las secciones voy a tener que invertir la lista con los resultados, para preservar el orden original:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-erlang"><span style="color: #006699;">traverse_sections</span>([<span style="color: #BA36A5;">Section</span> | <span style="color: #BA36A5;">Rest</span>], <span style="color: #BA36A5;">Output</span> <span style="color: #8D8D84;">% </span><span style="color: #8D8D84; font-style: italic;">...</span>
+    <span style="color: #8D8D84;">%% </span><span style="color: #8D8D84; font-style: italic;">...</span>
+    <span style="color: #6434A3;">traverse_sections</span>(<span style="color: #BA36A5;">Rest</span>, [<span style="color: #BA36A5;">SectionWithPositions</span> | <span style="color: #BA36A5;">Output</span>], <span style="color: #8D8D84;">%</span><span style="color: #8D8D84; font-style: italic;">....</span>
+<span style="color: #006699;">traverse_sections</span>([], <span style="color: #BA36A5;">Output</span>, <span style="color: #8D8D84;">% </span><span style="color: #8D8D84; font-style: italic;">...</span>
+    <span style="color: #6434A3;">lists</span>:<span style="color: #6434A3;">reverse</span>(<span style="color: #BA36A5;">Output</span>).
+</pre>
+</div>
+
+<p>
+La primera versión que funcionó me quedó así:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-erlang"><span style="color: #006699;">traverse_sections</span>([<span style="color: #BA36A5;">Section</span> | <span style="color: #BA36A5;">Rest</span>], <span style="color: #BA36A5;">Output</span>, <span style="color: #BA36A5;">SectionPosition</span>, <span style="color: #BA36A5;">LessonPositon</span>) -&gt;
+    {<span style="color: #BA36A5;">Lessons</span>, <span style="color: #BA36A5;">ActualLessonPosition</span>} =
+        <span style="color: #0000FF;">case</span> <span style="color: #BA36A5;">Section</span> <span style="color: #0000FF;">of</span>
+            #{lessons := <span style="color: #BA36A5;">Lessons</span>, reset_lesson_position := true} -&gt;<span style="color: #006699;"> </span>{<span style="color: #BA36A5;">Lessons</span>, 1}<span style="color: #CC0000; background-color: #FFFF88;">;</span>
+            #{lessons := <span style="color: #BA36A5;">Lessons</span>} -&gt;<span style="color: #006699;"> </span>{<span style="color: #BA36A5;">Lessons</span>, <span style="color: #BA36A5;">LessonPositon</span>}
+        <span style="color: #0000FF;">end</span>,
+
+    {<span style="color: #BA36A5;">LessonsWithPostions</span>, <span style="color: #BA36A5;">NextLessonPosition</span>} =
+        <span style="color: #6434A3;">traverse_lessons</span>(<span style="color: #BA36A5;">Lessons</span>, [], <span style="color: #BA36A5;">ActualLessonPosition</span>),
+    <span style="color: #BA36A5;">SectionWithPositions</span> = <span style="color: #BA36A5;">Section</span>#{position =&gt; <span style="color: #BA36A5;">SectionPosition</span>,
+                                    lessons =&gt; <span style="color: #BA36A5;">LessonsWithPostions</span>},
+
+    <span style="color: #6434A3;">traverse_sections</span>(<span style="color: #BA36A5;">Rest</span>, [<span style="color: #BA36A5;">SectionWithPositions</span> | <span style="color: #BA36A5;">Output</span>], <span style="color: #BA36A5;">SectionPosition</span> + 1<span style="color: #CC0000; background-color: #FFFF88;">, </span><span style="color: #CC0000; background-color: #FFFF88;">NextLessonPosition</span><span style="color: #CC0000; background-color: #FFFF88;">);</span>
+<span style="color: #006699;">traverse_sections</span>([], <span style="color: #BA36A5;">Output</span>, <span style="color: #BA36A5;">_</span>, <span style="color: #BA36A5;">_</span>) -&gt;
+    <span style="color: #6434A3;">lists</span>:<span style="color: #6434A3;">reverse</span>(<span style="color: #BA36A5;">Output</span>).
+
+<span style="color: #006699;">traverse_lessons</span>([<span style="color: #BA36A5;">Lesson</span> | <span style="color: #BA36A5;">Rest</span>], <span style="color: #BA36A5;">Output</span>, <span style="color: #BA36A5;">LessonPosition</span>) -&gt;
+    <span style="color: #BA36A5;">LessonWithPosition</span> = <span style="color: #BA36A5;">Lesson</span>#{position =&gt; <span style="color: #BA36A5;">LessonPosition</span>},
+    <span style="color: #6434A3;">traverse_lessons</span>(<span style="color: #BA36A5;">Rest</span>, [<span style="color: #BA36A5;">LessonWithPosition</span> | <span style="color: #BA36A5;">Output</span>], <span style="color: #BA36A5;">LessonPosition</span> + 1);
+<span style="color: #006699;">traverse_lessons</span>([], <span style="color: #BA36A5;">Output</span>, <span style="color: #BA36A5;">LastLessonPosition</span>) -&gt;
+    {<span style="color: #6434A3;">lists</span>:<span style="color: #6434A3;">reverse</span>(<span style="color: #BA36A5;">Output</span>), <span style="color: #BA36A5;">LastLessonPosition</span>}.
+</pre>
+</div>
+
+<p>
+Bastante más engorroso que la versión en Python. Prestando un poco de atención, el <code>case</code> en la primera cláusula me huele mal: en primer lugar porque está haciendo dos cosas a la vez (extraer la lista de lecciones y decidir si se debe resetar la posición), en segundo lugar porque suelo preferir extraer los <code>case</code> a funciones auxiliares con pattern-matching en sus argumentos. El resultado:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-erlang"><span style="color: #006699;">traverse_sections</span>([<span style="color: #BA36A5;">Section</span> | <span style="color: #BA36A5;">Rest</span>], <span style="color: #BA36A5;">Output</span>, <span style="color: #BA36A5;">SectionPosition</span>, <span style="color: #BA36A5;">LessonPosition</span>) -&gt;
+    #{lessons := <span style="color: #BA36A5;">Lessons</span>, reset_lesson_position := <span style="color: #BA36A5;">ResetPosition</span>} = <span style="color: #BA36A5;">Section</span>,
+
+    {<span style="color: #BA36A5;">LessonsWithPostions</span>, <span style="color: #BA36A5;">NextLessonPosition</span>} =
+        <span style="color: #6434A3;">traverse_lessons</span>(<span style="color: #BA36A5;">Lessons</span>, <span style="color: #BA36A5;">LessonPosition</span>, <span style="color: #BA36A5;">ResetPosition</span>),
+    <span style="color: #BA36A5;">SectionWithPositions</span> = <span style="color: #BA36A5;">Section</span>#{position =&gt; <span style="color: #BA36A5;">SectionPosition</span>,
+                                    lessons =&gt; <span style="color: #BA36A5;">LessonsWithPostions</span>},
+
+    <span style="color: #6434A3;">traverse_sections</span>(<span style="color: #BA36A5;">Rest</span>, [<span style="color: #BA36A5;">SectionWithPositions</span> | <span style="color: #BA36A5;">Output</span>], <span style="color: #BA36A5;">SectionPosition</span> + 1<span style="color: #CC0000; background-color: #FFFF88;">, </span><span style="color: #CC0000; background-color: #FFFF88;">NextLessonPosition</span><span style="color: #CC0000; background-color: #FFFF88;">);</span>
+<span style="color: #006699;">traverse_sections</span>([], <span style="color: #BA36A5;">Output</span>, <span style="color: #BA36A5;">_</span>, <span style="color: #BA36A5;">_</span>) -&gt;
+    <span style="color: #6434A3;">lists</span>:<span style="color: #6434A3;">reverse</span>(<span style="color: #BA36A5;">Output</span>).
+
+<span style="color: #006699;">traverse_lessons</span>(<span style="color: #BA36A5;">Lessons</span>, <span style="color: #BA36A5;">LessonPosition</span>, <span style="color: #BA36A5;">_Reset</span>=false) -&gt;
+    <span style="color: #6434A3;">traverse_lessons</span>(<span style="color: #BA36A5;">Lessons</span>, [], <span style="color: #BA36A5;">LessonPosition</span>);
+<span style="color: #006699;">traverse_lessons</span>(<span style="color: #BA36A5;">Lessons</span>, <span style="color: #BA36A5;">_LessonPosition</span>, <span style="color: #BA36A5;">_Reset</span>=true) -&gt;
+    <span style="color: #6434A3;">traverse_lessons</span>(<span style="color: #BA36A5;">Lessons</span>, [], 1);
+
+<span style="color: #006699;">traverse_lessons</span>([<span style="color: #BA36A5;">Lesson</span> | <span style="color: #BA36A5;">Rest</span>], <span style="color: #BA36A5;">Output</span>, <span style="color: #BA36A5;">LessonPosition</span>) -&gt;
+    <span style="color: #BA36A5;">LessonWithPosition</span> = <span style="color: #BA36A5;">Lesson</span>#{position =&gt; <span style="color: #BA36A5;">LessonPosition</span>},
+    <span style="color: #6434A3;">traverse_lessons</span>(<span style="color: #BA36A5;">Rest</span>, [<span style="color: #BA36A5;">LessonWithPosition</span> | <span style="color: #BA36A5;">Output</span>], <span style="color: #BA36A5;">LessonPosition</span> + 1);
+<span style="color: #006699;">traverse_lessons</span>([], <span style="color: #BA36A5;">Output</span>, <span style="color: #BA36A5;">LastLessonPosition</span>) -&gt;
+    {<span style="color: #6434A3;">lists</span>:<span style="color: #6434A3;">reverse</span>(<span style="color: #BA36A5;">Output</span>), <span style="color: #BA36A5;">LastLessonPosition</span>}.
+</pre>
+</div>
+
+<p>
+El código queda menos anidado, lo que considero un indicio de que el cambio es positivo.
+</p>
+
+<p>
+La misma solución se podría reescribir usando <a href="https://learnyousomeerlang.com/higher-order-functions">funciones de orden superior</a>, en este caso <code>lists:foldl/3</code>, en vez de aplicar recursión "a mano".
+</p>
+
+<div class="org-src-container">
+<pre class="src src-erlang"><span style="color: #006699;">traverse_sections</span>(<span style="color: #BA36A5;">Sections</span>) -&gt;
+    {<span style="color: #BA36A5;">Output</span>, <span style="color: #BA36A5;">_</span>, <span style="color: #BA36A5;">_</span>} =
+        <span style="color: #6434A3;">lists</span>:<span style="color: #6434A3;">foldl</span>(
+          <span style="color: #0000FF;">fun</span> (<span style="color: #BA36A5;">Section</span>, {<span style="color: #BA36A5;">Output</span>, <span style="color: #BA36A5;">SectionPosition</span>, <span style="color: #BA36A5;">LessonPosition</span>}) -&gt;
+                  #{lessons := <span style="color: #BA36A5;">Lessons</span>, reset_lesson_position := <span style="color: #BA36A5;">ResetPosition</span>} <span style="color: #CC0000; background-color: #FFFF88;">= </span><span style="color: #CC0000; background-color: #FFFF88;">Section</span><span style="color: #CC0000; background-color: #FFFF88;">,</span>
+                  {<span style="color: #BA36A5;">LessonsWithPostions</span>, <span style="color: #BA36A5;">NextLessonPosition</span>} =
+                      <span style="color: #6434A3;">traverse_lessons</span>(<span style="color: #BA36A5;">Lessons</span>, <span style="color: #BA36A5;">LessonPosition</span>, <span style="color: #BA36A5;">ResetPosition</span>),
+                  <span style="color: #BA36A5;">SectionWithPositions</span> = <span style="color: #BA36A5;">Section</span>#{position =&gt; <span style="color: #BA36A5;">SectionPosition</span>,
+                                                  lessons =&gt; <span style="color: #BA36A5;">LessonsWithPostions</span><span style="color: #CC0000; background-color: #FFFF88;">},</span>
+                  {[<span style="color: #BA36A5;">SectionWithPositions</span> | <span style="color: #BA36A5;">Output</span>], <span style="color: #BA36A5;">SectionPosition</span> + 1, <span style="color: #BA36A5;">NextLes</span><span style="color: #CC0000; background-color: #FFFF88;">sonPosition</span><span style="color: #CC0000; background-color: #FFFF88;">}</span>
+          <span style="color: #0000FF;">end</span>, {[], 1, 1}, <span style="color: #BA36A5;">Sections</span>),
+    <span style="color: #6434A3;">lists</span>:<span style="color: #6434A3;">reverse</span>(<span style="color: #BA36A5;">Output</span>).
+</pre>
+</div>
+
+<p>
+Si bien son menos líneas de código, esta opción no me termina de convencer: el código resulta más anidado, demasiado denso. Si quisiera extraer la función anónima del <code>foldl</code> y darle su propio nombre, tampoco sería satisfactorio:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-erlang"><span style="color: #006699;">traverse_sections</span>(<span style="color: #BA36A5;">Sections</span>) -&gt;
+    {<span style="color: #BA36A5;">Output</span>, <span style="color: #BA36A5;">_</span>, <span style="color: #BA36A5;">_</span>} =
+        <span style="color: #6434A3;">lists</span>:<span style="color: #6434A3;">foldl</span>(<span style="color: #0000FF;">fun</span> <span style="color: #6434A3;">traverse_section/2</span>, {[], 1, 1}, <span style="color: #BA36A5;">Sections</span>),
+    <span style="color: #6434A3;">lists</span>:<span style="color: #6434A3;">reverse</span>(<span style="color: #BA36A5;">Output</span>).
+
+<span style="color: #006699;">traverse_section</span>(<span style="color: #BA36A5;">Section</span>, {<span style="color: #BA36A5;">Output</span>, <span style="color: #BA36A5;">SectionPosition</span>, <span style="color: #BA36A5;">LessonPosition</span>}) -&gt;
+    #{lessons := <span style="color: #BA36A5;">Lessons</span>, reset_lesson_position := <span style="color: #BA36A5;">ResetPosition</span>} = <span style="color: #BA36A5;">Section</span>,
+    {<span style="color: #BA36A5;">LessonsWithPostions</span>, <span style="color: #BA36A5;">NextLessonPosition</span>} =
+        <span style="color: #6434A3;">traverse_lessons</span>(<span style="color: #BA36A5;">Lessons</span>, <span style="color: #BA36A5;">LessonPosition</span>, <span style="color: #BA36A5;">ResetPosition</span>),
+    <span style="color: #BA36A5;">SectionWithPositions</span> = <span style="color: #BA36A5;">Section</span>#{position =&gt; <span style="color: #BA36A5;">SectionPosition</span>,
+                                    lessons =&gt; <span style="color: #BA36A5;">LessonsWithPostions</span>},
+    {[<span style="color: #BA36A5;">SectionWithPositions</span> | <span style="color: #BA36A5;">Output</span>], <span style="color: #BA36A5;">SectionPosition</span> + 1, <span style="color: #BA36A5;">NextLessonPosition</span>}.
+</pre>
+</div>
+
+<p>
+Encuentro que estas funciones "reductoras" son un poco confusas cuando se las separa del llamado a <code>foldl</code>: se oscurece la justificación para empaquetar los argumentos en una tupla (<code>{Output, SectionPosition, LessonPosition}</code>) y al llamar al <code>foldl</code> nos vemos obligados a descartar elementos del resultado (<code>{Output, _, _}</code>). Desde ya que todo esto está bien adentrado en el territorio del gusto personal; ninguna de las opciones anteriores me parece extravagante, todas podrían calificar de <i>idiomáticas</i>.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb2d5cfa" class="outline-2">
+<h2 id="orgb2d5cfa">Lo (no) idiomático</h2>
+<div class="outline-text-2" id="text-orgb2d5cfa">
+</div>
+</div>
+
+<div id="outline-container-org5d643b5" class="outline-2">
+<h2 id="org5d643b5">JavaScript</h2>
+<div class="outline-text-2" id="text-org5d643b5">
+<p>
+acá o después de Python
+</p>
+</div>
+</div>

@@ -1,0 +1,199 @@
+#+OPTIONS: toc:nil num:nil
+#+LANGUAGE: es
+#+BEGIN_EXPORT html
+---
+layout: post
+title: "Lo idiomático"
+date: 2021-04-10 14:47:39
+tags: [programación]
+---
+#+END_EXPORT
+
+La semana pasada circuló [[https://github.com/josevalim/nested-data-structure-traversal][un repositorio de José Valim]] que planteaba un problema sencillo de programación (recorrer y "anotar" una estructura de datos anidada) e invitaba a enviar soluciones usando distintos lenguajes. Fue simpático ver cómo crecían las contribuciones con el correr de las horas.
+
+El ejercicio me pareció interesante porque el problema es suficientemente fácil como para entenderlo y encontrarle una solución rápidamente y después divagar indefinidamente sobre las distintas formas de expresarla. En particular, me entretuve pensando cómo cambiaría mi propia solución según cuál de los lenguajes que frecuento usara en cada caso. Abajo transcribo el proceso. Para más contexto, sugiero leer la [[https://github.com/josevalim/nested-data-structure-traversal#the-problem][descripción del problema]]. El código del que extraje los ejemplos siguientes se puede encontrar acá.
+# FIXME subir a repo
+
+** Python
+La solución que escribí intuitivamente en Python es casi idéntica al [[https://github.com/josevalim/nested-data-structure-traversal/blob/bce81f759dcb4c1efa113e3155520099da7cb300/python/for-in.py#L28-L42][ejemplo provisto en el repositorio]], lo que era esperable porque tendría que haber forzado las cosas para llegar a algo distinto:
+
+#+begin_src python
+section_position = 1
+lesson_position = 1
+for section in sections:
+    section["position"] = section_position
+    section_position += 1
+
+    if section["reset_lesson_position"]:
+        lesson_position = 1
+
+    for lesson in section["lessons"]:
+        lesson["position"] = lesson_position
+        lesson_position += 1
+
+print(sections)
+#+end_src
+
+Encuentro que Python minimiza la distancia entre lo que pienso y termino por escribir. Supongo que se debe en parte a la expresividad del lenguaje pero también a que la forma en que aprendí a razonar los algoritmos cuando estaba empezando a programar se ajusta bastante al estilo imperativo que fomenta Python.
+
+Para ser justo en las comparaciones con los otros lenguajes, voy a agregar algunas restricciones: el código no puede estar suelto en el módulo, ensuciando el scope global, sino que hay que agruparlo en funciones; y la función no puede mutar la estructura de input sino que tiene que construir una nueva:
+#+begin_src python
+def traverse(sections):
+    result = []
+    section_position = 1
+    lesson_position = 1
+    for section in sections:
+        section = {**section, "position": section_position}
+        section_position += 1
+
+        if section["reset_lesson_position"]:
+            lesson_position = 1
+
+        lessons = []
+        for lesson in section["lessons"]:
+            lesson = {**lesson, "position": lesson_position}
+            lesson_position += 1
+            lessons.append(lesson)
+
+        section[lessons] = lessons
+        result.append(section)
+
+    return result
+#+end_src
+
+** Erlang
+La implementación en Erlang, donde los datos son inmutables y no hay sentencias iterativas, me requiere un poco más de esfuerzo mental, aunque con los años se volvió relativamente intuitivo pensar el problema en forma recursiva.
+
+Sé que voy a necesitar una función que procese un elemento de la lista a la vez...
+#+begin_src erlang
+traverse_sections([Section | Rest], % ...
+#+end_src
+
+...que voy a tener que acumular los resultados en otra lista y llamar a la misma función con el resto de las secciones...
+
+#+begin_src erlang
+traverse_sections([Section | Rest], Output % ...
+    %% ...
+    traverse_sections(Rest, [SectionWithPositions | Output], %....
+#+end_src
+
+...y que al terminar de procesar las secciones voy a tener que invertir la lista con los resultados, para preservar el orden original:
+
+#+begin_src erlang
+traverse_sections([Section | Rest], Output % ...
+    %% ...
+    traverse_sections(Rest, [SectionWithPositions | Output], %....
+traverse_sections([], Output, % ...
+    lists:reverse(Output).
+#+end_src
+
+La primera versión que funcionó me quedó así:
+
+#+begin_src erlang
+traverse_sections([Section | Rest], Output, SectionPosition, LessonPositon) ->
+    {Lessons, ActualLessonPosition} =
+        case Section of
+            #{lessons := Lessons, reset_lesson_position := true} -> {Lessons, 1};
+            #{lessons := Lessons} -> {Lessons, LessonPositon}
+        end,
+
+    {LessonsWithPostions, NextLessonPosition} =
+        traverse_lessons(Lessons, [], ActualLessonPosition),
+    SectionWithPositions = Section#{position => SectionPosition,
+                                    lessons => LessonsWithPostions},
+
+    traverse_sections(Rest, [SectionWithPositions | Output], SectionPosition + 1, NextLessonPosition);
+traverse_sections([], Output, _, _) ->
+    lists:reverse(Output).
+
+traverse_lessons([Lesson | Rest], Output, LessonPosition) ->
+    LessonWithPosition = Lesson#{position => LessonPosition},
+    traverse_lessons(Rest, [LessonWithPosition | Output], LessonPosition + 1);
+traverse_lessons([], Output, LastLessonPosition) ->
+    {lists:reverse(Output), LastLessonPosition}.
+#+end_src
+
+Bastante más engorroso que la versión en Python. Prestando un poco de atención, el ~case~ en la primera cláusula me huele mal: en primer lugar porque está haciendo dos cosas a la vez (extraer la lista de lecciones y decidir si se debe resetar la posición), en segundo lugar porque suelo preferir extraer los ~case~ a funciones auxiliares con pattern-matching en sus argumentos. El resultado:
+
+#+begin_src erlang
+traverse_sections([Section | Rest], Output, SectionPosition, LessonPosition) ->
+    #{lessons := Lessons, reset_lesson_position := ResetPosition} = Section,
+
+    {LessonsWithPostions, NextLessonPosition} =
+        traverse_lessons(Lessons, LessonPosition, ResetPosition),
+    SectionWithPositions = Section#{position => SectionPosition,
+                                    lessons => LessonsWithPostions},
+
+    traverse_sections(Rest, [SectionWithPositions | Output], SectionPosition + 1, NextLessonPosition);
+traverse_sections([], Output, _, _) ->
+    lists:reverse(Output).
+
+traverse_lessons(Lessons, LessonPosition, _Reset=false) ->
+    traverse_lessons(Lessons, [], LessonPosition);
+traverse_lessons(Lessons, _LessonPosition, _Reset=true) ->
+    traverse_lessons(Lessons, [], 1);
+
+traverse_lessons([Lesson | Rest], Output, LessonPosition) ->
+    LessonWithPosition = Lesson#{position => LessonPosition},
+    traverse_lessons(Rest, [LessonWithPosition | Output], LessonPosition + 1);
+traverse_lessons([], Output, LastLessonPosition) ->
+    {lists:reverse(Output), LastLessonPosition}.
+#+end_src
+
+El código queda menos anidado, lo que considero un indicio de que el cambio es positivo.
+
+La misma solución se podría reescribir usando [[https://learnyousomeerlang.com/higher-order-functions][funciones de orden superior]], en este caso ~lists:foldl/3~, en vez de aplicar recursión "a mano".
+
+#+begin_src erlang
+traverse_sections(Sections) ->
+    {Output, _, _} =
+        lists:foldl(
+          fun (Section, {Output, SectionPosition, LessonPosition}) ->
+                  #{lessons := Lessons, reset_lesson_position := ResetPosition} = Section,
+                  {LessonsWithPostions, NextLessonPosition} =
+                      traverse_lessons(Lessons, LessonPosition, ResetPosition),
+                  SectionWithPositions = Section#{position => SectionPosition,
+                                                  lessons => LessonsWithPostions},
+                  {[SectionWithPositions | Output], SectionPosition + 1, NextLessonPosition}
+          end, {[], 1, 1}, Sections),
+    lists:reverse(Output).
+#+end_src
+
+Si bien son menos líneas de código, esta opción no me termina de convencer: el código resulta más anidado, demasiado denso. Si quisiera extraer la función anónima del ~foldl~ y darle su propio nombre, tampoco sería satisfactorio:
+
+#+begin_src erlang
+traverse_sections(Sections) ->
+    {Output, _, _} =
+        lists:foldl(fun traverse_section/2, {[], 1, 1}, Sections),
+    lists:reverse(Output).
+
+traverse_section(Section, {Output, SectionPosition, LessonPosition}) ->
+    #{lessons := Lessons, reset_lesson_position := ResetPosition} = Section,
+    {LessonsWithPostions, NextLessonPosition} =
+        traverse_lessons(Lessons, LessonPosition, ResetPosition),
+    SectionWithPositions = Section#{position => SectionPosition,
+                                    lessons => LessonsWithPostions},
+    {[SectionWithPositions | Output], SectionPosition + 1, NextLessonPosition}.
+#+end_src
+
+Encuentro que estas funciones "reductoras" son un poco confusas cuando se las separa del llamado a ~foldl~: se oscurece la justificación para empaquetar los argumentos en una tupla (~{Output, SectionPosition, LessonPosition}~) y al llamar al ~foldl~ nos vemos obligados a descartar elementos del resultado (~{Output, _, _}~). Desde ya que todo esto está bien adentrado en el territorio del gusto personal; ninguna de las opciones anteriores me parece extravagante, todas podrían calificar de /idiomáticas/.
+
+** Lo (no) idiomático
+# python con lambdas
+
+# qué nos impide intentar las mismas soluciones de Erlang en Python?
+# más allá de que faltan features: pattern matching, tail call optimization
+
+# clojure con defs?
+
+# el estilo correcto es el estilo circundante pero puede no aplicar (o tal vez querramos reescribirlo)
+# lo idiomático, que es subjetivo y discutible, pero no es lo mismo que el estilo personal
+# link a videira lopes
+
+# un buen ejemplo de lo que *no* es idiomático es mi repo de app store optimization
+# ahi me cebé usando Ramda, lo cual está bien porque era un proyecto personal y el objetivo era divertirme
+# y usando ese estilo, para bien o para mal, logré que todo el mundo se abstuviera
+# de contribuir al repo, a diferencia de otros packages relacionados que publiqué
+
+** Posdata: JavaScript
+acá o después de Python
