@@ -212,13 +212,60 @@ Encuentro que estas funciones "reductoras" son un poco confusas cuando se las se
 ** Posdata: JavaScript
 ¿Existe lo idiomático en JavaScript, un lenguaje que es tantos lenguajes y que está en flujo constante? No voy a repetir lo que ya puse en otro post, pero seguramente hay ciertos consensos sobre lo que /no/ se debe hacer. Lo que es decir que uno queda bastante librado al propio estilo o, en todo caso, a un estilo consensuado en equipo o en comunidad.
 
-Si bien podría escribir una solución casi idéntica a la de Python...
+Si bien podría escribir una solución casi idéntica a la de Python[fn:1]...
 
-# TODO codigo imperativo
+#+begin_src javascript
+function traverse(sections) {
+  let result = [];
+  let lessonPosition = 1;
+
+  for (let i = 0; i < sections.length; i++) {
+    let section = sections[i];
+
+    if (section.reset_lesson_position) {
+      lessonPosition = 1;
+    }
+
+    const lessons = [];
+    for (let j = 0; j < section.lessons.length; j++) {
+      let lesson = section.lessons[j];
+      lesson = Object.assign({position: lessonPosition}, lesson);
+      lessons.push(lesson);
+      lessonPosition++;
+    }
+
+    section = Object.assign({}, section, {position: i + 1, lessons});
+    result.push(section);
+  }
+
+  return result;
+}
+#+end_src
 
 ...en mi corazón JavaScript siempre va a ser un lenguaje funcional (/the first lambda language to go mainstream/):
 
-# TODO codigo funcional
+#+begin_src javascript
+function traverse(sections) {
+  let lessonPosition = 1;
+  return sections.map(function (section, i) {
+
+    if (section.reset_lesson_position) {
+      lessonPosition = 1;
+    }
+
+    const lessons = section.lessons.map(function (lesson) {
+      lesson = {...lesson, position: lessonPosition};
+      lessonPosition++;
+      return lesson;
+    });
+
+    return {...section, lessons, position: i + 1};
+  }, []);
+}
+#+end_src
+
+Con un poco de liberalidad me permito mutar la variable externa ~lessonPosition~ y así cambiar lo que sería un ~reduce~ por un ~map~,
+resultando la que probablemente sea la más sencilla de todas las implementaciones que mostré.
 
 Claro que todo se puede llevar demasiado lejos. Durante un tiempo tuve cierta fanatización con la biblioteca [[https://ramdajs.com/][Ramda.js]] y empecé a producir un código que puede gustar o no, pero ciertamente no es idiomático. El mejor es ejemplo es [[https://github.com/facundoolano/aso/blob/master/lib/visibility.js][mi paquete de App Store Optimization]]: la escribí completamente en términos de transformaciones de datos con Ramda y el resultado, para bien o para mal, fue que logré que todo el mundo se abstuviera para siempre de mandar un Pull-Request a ese repositorio.
 
@@ -232,3 +279,7 @@ In the universe of all things a good programmer must know, I see collections of 
 #+end_quote
 
 Los ejercicios se pueden ver [[https://github.com/crista/exercises-in-programming-style][en este repositorio]].
+
+* Footnotes
+
+[fn:1] En el repositorio de Valim hay una [[https://github.com/josevalim/nested-data-structure-traversal/blob/bce81f759dcb4c1efa113e3155520099da7cb300/javascript/for_of.js][solución imperativa]] bastante más limpia usando ~for ... of~.
