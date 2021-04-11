@@ -1,3 +1,4 @@
+#+PROPERTY: header-args :eval never-export
 #+OPTIONS: toc:nil num:nil
 #+LANGUAGE: es
 #+BEGIN_EXPORT html
@@ -184,16 +185,42 @@ Encuentro que estas funciones "reductoras" son un poco confusas cuando se las se
 # qué nos impide intentar las mismas soluciones de Erlang en Python?
 # más allá de que faltan features: pattern matching, tail call optimization
 
-# clojure con defs?
+# python con reduce
 
-# el estilo correcto es el estilo circundante pero puede no aplicar (o tal vez querramos reescribirlo)
-# lo idiomático, que es subjetivo y discutible, pero no es lo mismo que el estilo personal
-# link a videira lopes
+# erlang con counters
 
-# un buen ejemplo de lo que *no* es idiomático es mi repo de app store optimization
-# ahi me cebé usando Ramda, lo cual está bien porque era un proyecto personal y el objetivo era divertirme
-# y usando ese estilo, para bien o para mal, logré que todo el mundo se abstuviera
-# de contribuir al repo, a diferencia de otros packages relacionados que publiqué
+# del repo: elixir con ets, clojure con atoms
+
+# ¿Qué nos lo impide? la empatía, la vergüenza. el respeto por el prójimo. Los usos y costumbres. La honestidad intelectual. Lo idiomático.
+
+# Creo que existe el estilo en programación, entendido como las preferencias, los rasgos personales de cada programación a la hora de expresar la
+# solución a un problema. Existe y es de las cosas que enriquecen al oficio, pero hay que usarlo con moderación.
+
+# Hablando de proyectos profesionales, yo suscribo a la idea de que el estilo apropiado es cualquier estilo preexistente en el código sobre el que vamos a trabajar.
+# Pero a veces no hay código preexistente o no impone un estilo sobre lo que vamos a escribir, o bien lo consideramos
+# inadecuado y nos disponemos a modificarlo.
+# En estos casos hay que apelar a lo idiomático, es decir, usar la herramienta en forma convencional,
+# no exigir un esfuerzo innecesario a quien tenga que leer lo que escribamos
+# solo dentro de esos límites me parece aceptable dar rienda suelta a la preferencia personal.
+
+# Es cierto que postular que esto o aquello es idiomático es meterse en un terreno pantanoso,
+# es difícil no convencerse de que el código idiomático es el códig que a mí me parece bien.
+# Salvo en casos muy concretos, lo idiomático no está escrito; refiere a convenciones, a un sentido común discutible,
+# sujeto a interpretación y a cambios en el tiempo. <No queda más que ser autocrítico:
+# ver el código con los ojos del otro, que el código sea visto por otros ojos.>
 
 ** Posdata: JavaScript
-acá o después de Python
+¿Existe lo idiomático en JavaScript, un lenguaje que es tantos lenguajes y que está en flujo constante? No voy a repetir lo que ya puse en otro post, pero seguramente hay ciertos consensos sobre lo que /no/ se debe hacer. Lo que es decir que uno queda bastante librado al propio estilo o, en todo caso, a un estilo consensuado en equipo o en comunidad.
+
+Si bien podría escribir una solución casi idéntica a la de Python...
+
+# TODO codigo imperativo
+
+En mi corazón JavaScript siempre va a ser un lenguaje funcional (/the first functional language to go mainstream/):
+
+# TODO codigo funcional
+
+Claro que todo se puede llevar demasiado lejos. Durante un tiempo tuve cierta fanatización con la biblioteca [[https://ramdajs.com/][Ramda.js]] y empecé a producir un código que puede gustar o no, pero ciertamente no es idiomático. El mejor es ejemplo es [[https://github.com/facundoolano/aso/blob/master/lib/visibility.js][mi paquete de App Store Optimization]]: la escribí completamente en términos de transformaciones de datos con Ramda y el resultado, para bien o para mal, fue que logré que todo el mundo se abstuviera para siempre de mandar un Pull-Request a ese repositorio.
+
+** Posdata: Ejercicios de estilo
+# link a videira lopes
