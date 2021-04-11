@@ -2,7 +2,7 @@
 layout: post
 title: "Lo idiomático"
 date: 2021-04-10 14:47:39
-tags: [programación]
+tags: [programación, software]
 ---
 
 <p>
@@ -215,7 +215,7 @@ Si bien son menos líneas de código, esta opción no me termina de convencer: e
 </div>
 
 <p>
-Encuentro que estas funciones "reductoras" son un poco confusas cuando se las separa del llamado a <code>foldl</code>: se oscurece la justificación para empaquetar los argumentos en una tupla (<code>{Output, SectionPosition, LessonPosition}</code>) y al llamar al <code>foldl</code> nos vemos obligados a descartar elementos del resultado (<code>{Output, _, _}</code>). Desde ya que todo esto está bien adentrado en el territorio del gusto personal; ninguna de las opciones anteriores me parece extravagante, todas podrían calificar de <i>idiomáticas</i>.
+Encuentro que estas funciones "reductoras" son un poco confusas cuando se las separa del llamado a <code>foldl</code>: se oscurece la justificación para empaquetar los argumentos en una tupla (<code>{Output, SectionPosition, LessonPosition}</code>) y al llamar al <code>foldl</code> nos vemos obligados a descartar elementos del resultado (<code>{Output, _, _}</code>). Desde ya que todo esto está bien adentrado en el territorio del gusto personal; ninguna de las opciones anteriores me parece rebuscada, todas podrían calificar de <i>idiomáticas</i>.
 </p>
 </div>
 </div>
@@ -223,6 +223,17 @@ Encuentro que estas funciones "reductoras" son un poco confusas cuando se las se
 <div id="outline-container-orgb2d5cfa" class="outline-2">
 <h2 id="orgb2d5cfa">Lo (no) idiomático</h2>
 <div class="outline-text-2" id="text-orgb2d5cfa">
+<p>
+¿Qué me impide intercambiar los estilos que usé para Python y Erlang? Salvando las especificidades de cada plataforma, uno podría ensayar una versión funcional en Python usando <code>map</code>, <code>reduce</code> y <code>lambda</code>, así como una versión con estado mutable en Erlang, por ejemplo usando <a href="https://erlang.org/doc/man/counters.html">counters</a><sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>. Esas soluciones serían válidas pero extravagantes, el tipo de código que hace detenerse al lector y preguntar <i>qué es esto</i>. ¿Qué me impide hacerlo? La empatía, la vergüenza. El respeto por el prójimo. Los usos y costumbres. La honestidad intelectual. Lo idiomático.
+</p>
+
+<p>
+Yo creo que existe el estilo en programación, entendido como las preferencias, la impronta personal del individuo para expresarse a través del código. Existe y es de las cosas que enriquecen al oficio, pero hay que usarlo con moderación. Hablando de proyectos profesionales (es decir, cuando el objetivo principal es producir código útil y no experimentar o entretenerse), yo suscribo a la idea de que el estilo apropiado es aquel preexistente en el código sobre el que se trabaja. Pero en ciertos casos no hay código preexistente o lo hay pero no informa el estilo de lo que vamos a escribir; o bien consideramos que el código preexistente es inadecuado y nos disponemos a reemplazarlo. En estos casos hay que apelar a lo idiomático, es decir, usar la herramienta en forma convencional, no exigir un esfuerzo innecesario a quien tenga que leer lo que vamos a escribir. Solo dentro de esos márgenes me parece aceptable dar lugar al estilo personal.
+</p>
+
+<p>
+Es cierto que hablar de lo idiomático es meterse en terreno pantanoso. Salvo en casos puntuales, las convenciones no están escritas; refieren a un sentido común discutible, sujeto a interpretación y a cambios en el tiempo. El peligro es convencerse de que existe una única forma correcta de hacer las cosas y que, casualmente, coincide con <i>nuestra</i> forma de hacer las cosas. No queda más que ser autocrítico: ver el código con los ojos del otro, que el código sea visto por otros ojos.
+</p>
 </div>
 </div>
 
@@ -230,11 +241,11 @@ Encuentro que estas funciones "reductoras" son un poco confusas cuando se las se
 <h2 id="orge82dc61">Posdata: JavaScript</h2>
 <div class="outline-text-2" id="text-orge82dc61">
 <p>
-¿Existe lo idiomático en JavaScript, un lenguaje que es tantos lenguajes y que está en flujo constante? No voy a repetir lo que ya puse en otro post, pero seguramente hay ciertos consensos sobre lo que <i>no</i> se debe hacer. Lo que es decir que uno queda bastante librado al propio estilo o, en todo caso, a un estilo consensuado en equipo o en comunidad.
+¿Existe lo idiomático en JavaScript, un lenguaje que es tantos lenguajes y que está en flujo constante? No voy a repetir lo que ya puse en <a href="../2020-09-22-javascript-las-partes-nobles">otro post</a>, pero seguramente hay ciertos consensos sobre lo que <i>no</i> se debe hacer. Lo que es decir que hay bastante margen para el propio estilo o, en todo caso, para un estilo consensuado en equipo o en comunidad.
 </p>
 
 <p>
-Si bien podría escribir una solución casi idéntica a la de Python<sup><a id="fnr.1" class="footref" href="#fn.1">1</a></sup>&#x2026;
+Si bien podría escribir una solución casi idéntica a la de Python<sup><a id="fnr.2" class="footref" href="#fn.2">2</a></sup>&#x2026;
 </p>
 
 <div class="org-src-container">
@@ -297,7 +308,7 @@ resultando la que probablemente sea la más sencilla de todas las implementacion
 </p>
 
 <p>
-Claro que todo se puede llevar demasiado lejos. Durante un tiempo tuve cierta fanatización con la biblioteca <a href="https://ramdajs.com/">Ramda.js</a> y empecé a producir un código que puede gustar o no, pero ciertamente no es idiomático. El mejor es ejemplo es <a href="https://github.com/facundoolano/aso/blob/master/lib/visibility.js">mi paquete de App Store Optimization</a>: la escribí completamente en términos de transformaciones de datos con Ramda y el resultado, para bien o para mal, fue que logré que todo el mundo se abstuviera para siempre de mandar un Pull-Request a ese repositorio.
+Claro que todo se puede llevar demasiado lejos. Durante un tiempo tuve cierta fanatización con la biblioteca <a href="https://ramdajs.com/">Ramda.js</a> y empecé a producir un código que puede gustar o no, pero ciertamente no es idiomático. El mejor ejemplo es <a href="https://github.com/facundoolano/aso/blob/master/lib/visibility.js">el paquete App Store Optimization</a>: lo escribí casi completamente en términos de transformaciones de datos con funciones de Ramda y el resultado, para bien o para mal, fue que logré que todo el mundo se abstuviera para siempre de mandar un Pull-Request a ese repositorio.
 </p>
 </div>
 </div>
@@ -328,6 +339,10 @@ Los ejercicios se pueden ver <a href="https://github.com/crista/exercises-in-pro
 <div id="text-footnotes">
 
 <div class="footdef"><sup><a id="fn.1" class="footnum" href="#fnr.1">1</a></sup> <div class="footpara"><p class="footpara">
+En esta línea, por ejemplo, hay soluciones en Elixir <a href="https://github.com/josevalim/nested-data-structure-traversal/blob/bce81f759dcb4c1efa113e3155520099da7cb300/elixir/ets_for.exs">usando tablas ETS</a> y en Clojure <a href="https://github.com/josevalim/nested-data-structure-traversal/blob/bce81f759dcb4c1efa113e3155520099da7cb300/clojure/atom.clj">usando atoms</a>.
+</p></div></div>
+
+<div class="footdef"><sup><a id="fn.2" class="footnum" href="#fnr.2">2</a></sup> <div class="footpara"><p class="footpara">
 En el repositorio de Valim hay una <a href="https://github.com/josevalim/nested-data-structure-traversal/blob/bce81f759dcb4c1efa113e3155520099da7cb300/javascript/for_of.js">solución imperativa</a> bastante más limpia usando <code>for ... of</code>.
 </p></div></div>
 

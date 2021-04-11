@@ -1,4 +1,3 @@
-#+PROPERTY: header-args :eval never-export
 #+OPTIONS: toc:nil num:nil
 #+LANGUAGE: es
 #+BEGIN_EXPORT html
@@ -6,7 +5,7 @@
 layout: post
 title: "Lo idiomático"
 date: 2021-04-10 14:47:39
-tags: [programación]
+tags: [programación, software]
 ---
 #+END_EXPORT
 
@@ -177,40 +176,18 @@ traverse_section(Section, {Output, SectionPosition, LessonPosition}) ->
     {[SectionWithPositions | Output], SectionPosition + 1, NextLessonPosition}.
 #+end_src
 
-Encuentro que estas funciones "reductoras" son un poco confusas cuando se las separa del llamado a ~foldl~: se oscurece la justificación para empaquetar los argumentos en una tupla (~{Output, SectionPosition, LessonPosition}~) y al llamar al ~foldl~ nos vemos obligados a descartar elementos del resultado (~{Output, _, _}~). Desde ya que todo esto está bien adentrado en el territorio del gusto personal; ninguna de las opciones anteriores me parece extravagante, todas podrían calificar de /idiomáticas/.
+Encuentro que estas funciones "reductoras" son un poco confusas cuando se las separa del llamado a ~foldl~: se oscurece la justificación para empaquetar los argumentos en una tupla (~{Output, SectionPosition, LessonPosition}~) y al llamar al ~foldl~ nos vemos obligados a descartar elementos del resultado (~{Output, _, _}~). Desde ya que todo esto está bien adentrado en el territorio del gusto personal; ninguna de las opciones anteriores me parece rebuscada, todas podrían calificar de /idiomáticas/.
 
 ** Lo (no) idiomático
-# python con lambdas
 
-# qué nos impide intentar las mismas soluciones de Erlang en Python?
-# más allá de que faltan features: pattern matching, tail call optimization
+¿Qué me impide intercambiar los estilos que usé para Python y Erlang? Salvando las especificidades de cada plataforma, uno podría ensayar una versión funcional en Python usando ~map~, ~reduce~ y ~lambda~, así como una versión con estado mutable en Erlang, por ejemplo usando [[https://erlang.org/doc/man/counters.html][counters]][fn:2]. Esas soluciones serían válidas pero extravagantes, el tipo de código que hace detenerse al lector y preguntar /qué es esto/. ¿Qué me impide hacerlo? La empatía, la vergüenza. El respeto por el prójimo. Los usos y costumbres. La honestidad intelectual. Lo idiomático.
 
-# python con reduce
+Yo creo que existe el estilo en programación, entendido como las preferencias, la impronta personal del individuo para expresarse a través del código. Existe y es de las cosas que enriquecen al oficio, pero hay que usarlo con moderación. Hablando de proyectos profesionales (es decir, cuando el objetivo principal es producir código útil y no experimentar o entretenerse), yo suscribo a la idea de que el estilo apropiado es aquel preexistente en el código sobre el que se trabaja. Pero en ciertos casos no hay código preexistente o lo hay pero no informa el estilo de lo que vamos a escribir; o bien consideramos que el código preexistente es inadecuado y nos disponemos a reemplazarlo. En estos casos hay que apelar a lo idiomático, es decir, usar la herramienta en forma convencional, no exigir un esfuerzo innecesario a quien tenga que leer lo que vamos a escribir. Solo dentro de esos márgenes me parece aceptable dar lugar al estilo personal.
 
-# erlang con counters
-
-# del repo: elixir con ets, clojure con atoms
-
-# ¿Qué nos lo impide? la empatía, la vergüenza. el respeto por el prójimo. Los usos y costumbres. La honestidad intelectual. Lo idiomático.
-
-# Creo que existe el estilo en programación, entendido como las preferencias, los rasgos personales de cada programación a la hora de expresar la
-# solución a un problema. Existe y es de las cosas que enriquecen al oficio, pero hay que usarlo con moderación.
-
-# Hablando de proyectos profesionales, yo suscribo a la idea de que el estilo apropiado es cualquier estilo preexistente en el código sobre el que vamos a trabajar.
-# Pero a veces no hay código preexistente o no impone un estilo sobre lo que vamos a escribir, o bien lo consideramos
-# inadecuado y nos disponemos a modificarlo.
-# En estos casos hay que apelar a lo idiomático, es decir, usar la herramienta en forma convencional,
-# no exigir un esfuerzo innecesario a quien tenga que leer lo que escribamos
-# solo dentro de esos límites me parece aceptable dar rienda suelta a la preferencia personal.
-
-# Es cierto que postular que esto o aquello es idiomático es meterse en un terreno pantanoso,
-# es difícil no convencerse de que el código idiomático es el códig que a mí me parece bien.
-# Salvo en casos muy concretos, lo idiomático no está escrito; refiere a convenciones, a un sentido común discutible,
-# sujeto a interpretación y a cambios en el tiempo. <No queda más que ser autocrítico:
-# ver el código con los ojos del otro, que el código sea visto por otros ojos.>
+Es cierto que hablar de lo idiomático es meterse en terreno pantanoso. Salvo en casos puntuales, las convenciones no están escritas; refieren a un sentido común discutible, sujeto a interpretación y a cambios en el tiempo. El peligro es convencerse de que existe una única forma correcta de hacer las cosas y que, casualmente, coincide con /nuestra/ forma de hacer las cosas. No queda más que ser autocrítico: ver el código con los ojos del otro, que el código sea visto por otros ojos.
 
 ** Posdata: JavaScript
-¿Existe lo idiomático en JavaScript, un lenguaje que es tantos lenguajes y que está en flujo constante? No voy a repetir lo que ya puse en otro post, pero seguramente hay ciertos consensos sobre lo que /no/ se debe hacer. Lo que es decir que uno queda bastante librado al propio estilo o, en todo caso, a un estilo consensuado en equipo o en comunidad.
+¿Existe lo idiomático en JavaScript, un lenguaje que es tantos lenguajes y que está en flujo constante? No voy a repetir lo que ya puse en [[file:../2020-09-22-javascript-las-partes-nobles][otro post]], pero seguramente hay ciertos consensos sobre lo que /no/ se debe hacer. Lo que es decir que hay bastante margen para el propio estilo o, en todo caso, para un estilo consensuado en equipo o en comunidad.
 
 Si bien podría escribir una solución casi idéntica a la de Python[fn:1]...
 
@@ -267,7 +244,7 @@ function traverse(sections) {
 Con un poco de liberalidad me permito mutar la variable externa ~lessonPosition~ y así cambiar lo que sería un ~reduce~ por un ~map~,
 resultando la que probablemente sea la más sencilla de todas las implementaciones que mostré.
 
-Claro que todo se puede llevar demasiado lejos. Durante un tiempo tuve cierta fanatización con la biblioteca [[https://ramdajs.com/][Ramda.js]] y empecé a producir un código que puede gustar o no, pero ciertamente no es idiomático. El mejor es ejemplo es [[https://github.com/facundoolano/aso/blob/master/lib/visibility.js][mi paquete de App Store Optimization]]: la escribí completamente en términos de transformaciones de datos con Ramda y el resultado, para bien o para mal, fue que logré que todo el mundo se abstuviera para siempre de mandar un Pull-Request a ese repositorio.
+Claro que todo se puede llevar demasiado lejos. Durante un tiempo tuve cierta fanatización con la biblioteca [[https://ramdajs.com/][Ramda.js]] y empecé a producir un código que puede gustar o no, pero ciertamente no es idiomático. El mejor ejemplo es [[https://github.com/facundoolano/aso/blob/master/lib/visibility.js][el paquete App Store Optimization]]: lo escribí casi completamente en términos de transformaciones de datos con funciones de Ramda y el resultado, para bien o para mal, fue que logré que todo el mundo se abstuviera para siempre de mandar un Pull-Request a ese repositorio.
 
 ** Posdata: Ejercicios de estilo
 Hay un libro que sigue una premisa parecida al repositorio de José Valim. Se llama [[https://www.routledge.com/Exercises-in-Programming-Style/Lopes/p/book/9780367350208][Exercises in programming style]], inspirado por
@@ -281,5 +258,7 @@ In the universe of all things a good programmer must know, I see collections of 
 Los ejercicios se pueden ver [[https://github.com/crista/exercises-in-programming-style][en este repositorio]].
 
 * Footnotes
+
+[fn:2] En esta línea, por ejemplo, hay soluciones en Elixir [[https://github.com/josevalim/nested-data-structure-traversal/blob/bce81f759dcb4c1efa113e3155520099da7cb300/elixir/ets_for.exs][usando tablas ETS]] y en Clojure [[https://github.com/josevalim/nested-data-structure-traversal/blob/bce81f759dcb4c1efa113e3155520099da7cb300/clojure/atom.clj][usando atoms]].
 
 [fn:1] En el repositorio de Valim hay una [[https://github.com/josevalim/nested-data-structure-traversal/blob/bce81f759dcb4c1efa113e3155520099da7cb300/javascript/for_of.js][solución imperativa]] bastante más limpia usando ~for ... of~.
