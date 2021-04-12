@@ -6,18 +6,22 @@ tags: [programación, software]
 ---
 
 <p>
-La semana pasada circuló <a href="https://github.com/josevalim/nested-data-structure-traversal">un repositorio de José Valim</a> que planteaba un problema sencillo de programación (recorrer y "anotar" una estructura de datos anidada) e invitaba a enviar soluciones usando distintos lenguajes. Fue simpático ver cómo crecían las contribuciones con el correr de las horas.
+La semana pasada circuló <a href="https://github.com/josevalim/nested-data-structure-traversal">un repositorio de José Valim</a> que plantea un problema sencillo de programación (recorrer y "anotar" una estructura de datos anidada) e invita a enviar soluciones usando distintos lenguajes. Fue simpático ver cómo crecían las contribuciones con el correr de las horas.
 </p>
 
 <p>
-El ejercicio me pareció interesante porque el problema es suficientemente fácil como para entenderlo y encontrarle una solución rápidamente y después divagar indefinidamente sobre las distintas formas de expresarla. En particular, me entretuve pensando cómo cambiaría mi propia solución según cuál de los lenguajes que frecuento usara en cada caso. Abajo transcribo el proceso. Para más contexto, sugiero leer la <a href="https://github.com/josevalim/nested-data-structure-traversal#the-problem">descripción del problema</a>. El código del que extraje los ejemplos siguientes se puede encontrar acá.
+El ejercicio me pareció interesante porque el problema es suficientemente fácil como para entenderlo y encontrarle una solución rápidamente y después divagar a gusto sobre las distintas formas de expresarla. En particular, me entretuve pensando cómo cambiaría mi propia solución según cuál de los lenguajes que frecuento usara en cada caso. Abajo transcribo algunas ideas que surgieron en el proceso.
+</p>
+
+<p>
+Para más contexto, sugiero leer la <a href="https://github.com/josevalim/nested-data-structure-traversal#the-problem">descripción del problema</a>. El código del que extraje los ejemplos siguientes se puede encontrar <a href="https://github.com/facundoolano/nested-data-structure-traversal">acá</a>.
 </p>
 
 <div id="outline-container-orge601fc2" class="outline-2">
 <h2 id="orge601fc2">Python</h2>
 <div class="outline-text-2" id="text-orge601fc2">
 <p>
-La solución que escribí intuitivamente en Python es casi idéntica al <a href="https://github.com/josevalim/nested-data-structure-traversal/blob/bce81f759dcb4c1efa113e3155520099da7cb300/python/for-in.py#L28-L42">ejemplo provisto en el repositorio</a>, lo que era esperable porque tendría que haber forzado las cosas para llegar a algo distinto:
+La solución que escribí en Python es casi idéntica al <a href="https://github.com/josevalim/nested-data-structure-traversal/blob/bce81f759dcb4c1efa113e3155520099da7cb300/python/for-in.py#L28-L42">ejemplo provisto en el repositorio</a>, lo que era esperable:
 </p>
 
 <div class="org-src-container">
@@ -39,11 +43,15 @@ La solución que escribí intuitivamente en Python es casi idéntica al <a href=
 </div>
 
 <p>
-Encuentro que Python minimiza la distancia entre lo que pienso y termino por escribir. Supongo que se debe en parte a la expresividad del lenguaje pero también a que la forma en que aprendí a razonar los algoritmos cuando estaba empezando a programar se ajusta bastante al estilo imperativo que fomenta Python.
+Tendría que haber forzado las cosas para llegar a algo diferente.
 </p>
 
 <p>
-Para ser justo en las comparaciones con los otros lenguajes, voy a agregar algunas restricciones: el código no puede estar suelto en el módulo, ensuciando el scope global, sino que hay que agruparlo en funciones; y la función no puede mutar la estructura de input sino que tiene que construir una nueva:
+Encuentro que Python minimiza la distancia entre lo que pienso y lo que termino por escribir. Supongo que se debe en parte a la expresividad del lenguaje pero también a que la forma en que aprendí a razonar cuando estaba empezando a programar se ajusta bastante al estilo imperativo que fomenta Python.
+</p>
+
+<p>
+Para ser justo en las comparaciones con los otros lenguajes voy a agregar algunas restricciones: el código no puede estar suelto en el módulo, ensuciando el scope global, sino que tiene que ser agrupado en funciones; y la función quer recibe la lista de secciones no puede mutarla sino que tiene que construir una nueva estructura:
 </p>
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #0000FF;">def</span> <span style="color: #006699;">traverse</span>(sections):
@@ -76,12 +84,9 @@ Para ser justo en las comparaciones con los otros lenguajes, voy a agregar algun
 <h2 id="org3b9d16c">Erlang</h2>
 <div class="outline-text-2" id="text-org3b9d16c">
 <p>
-La implementación en Erlang, donde los datos son inmutables y no hay sentencias iterativas, me requiere un poco más de esfuerzo mental, aunque con los años se volvió relativamente intuitivo pensar el problema en forma recursiva.
+La implementación en Erlang, donde los datos son inmutables y no hay sentencias iterativas, me requiere un poco más de esfuerzo mental, aunque con los años me acostumbré a descomponer este tipo de problemas en funciones recursivas. Sé que voy a necesitar una función que procese un elemento de la lista a la vez&#x2026;
 </p>
 
-<p>
-Sé que voy a necesitar una función que procese un elemento de la lista a la vez&#x2026;
-</p>
 <div class="org-src-container">
 <pre class="src src-erlang"><span style="color: #006699;">traverse_sections</span>([<span style="color: #BA36A5;">Section</span> | <span style="color: #BA36A5;">Rest</span>], <span style="color: #8D8D84;">% </span><span style="color: #8D8D84; font-style: italic;">...</span>
 </pre>
@@ -94,7 +99,7 @@ Sé que voy a necesitar una función que procese un elemento de la lista a la ve
 <div class="org-src-container">
 <pre class="src src-erlang"><span style="color: #006699;">traverse_sections</span>([<span style="color: #BA36A5;">Section</span> | <span style="color: #BA36A5;">Rest</span>], <span style="color: #BA36A5;">Output</span> <span style="color: #8D8D84;">% </span><span style="color: #8D8D84; font-style: italic;">...</span>
     <span style="color: #8D8D84;">%% </span><span style="color: #8D8D84; font-style: italic;">...</span>
-    <span style="color: #6434A3;">traverse_sections</span>(<span style="color: #BA36A5;">Rest</span>, [<span style="color: #BA36A5;">SectionWithPositions</span> | <span style="color: #BA36A5;">Output</span>], <span style="color: #8D8D84;">%</span><span style="color: #8D8D84; font-style: italic;">....</span>
+    <span style="color: #6434A3;">traverse_sections</span>(<span style="color: #BA36A5;">Rest</span>, [<span style="color: #BA36A5;">SectionWithPositions</span> | <span style="color: #BA36A5;">Output</span>], <span style="color: #8D8D84;">%</span><span style="color: #8D8D84; font-style: italic;">...</span>
 </pre>
 </div>
 
@@ -141,7 +146,7 @@ La primera versión que funcionó me quedó así:
 </div>
 
 <p>
-Bastante más engorroso que la versión en Python. Prestando un poco de atención, el <code>case</code> en la primera cláusula me huele mal: en primer lugar porque está haciendo dos cosas a la vez (extraer la lista de lecciones y decidir si se debe resetar la posición), en segundo lugar porque suelo preferir extraer los <code>case</code> a funciones auxiliares con pattern-matching en sus argumentos. El resultado:
+Un poco más engorroso que la versión imperativa, pero nada complicado. Prestando un poco de atención, el <code>case</code> en la primera cláusula me huele mal: en primer lugar porque está haciendo dos cosas a la vez (extraer la lista de lecciones y decidir si se debe resetar la posición), en segundo lugar porque prefiero extraer los <code>case</code> a funciones auxiliares con pattern-matching en sus argumentos. El resultado:
 </p>
 
 <div class="org-src-container">
@@ -215,7 +220,7 @@ Si bien son menos líneas de código, esta opción no me termina de convencer: e
 </div>
 
 <p>
-Encuentro que estas funciones "reductoras" son un poco confusas cuando se las separa del llamado a <code>foldl</code>: se oscurece la justificación para empaquetar los argumentos en una tupla (<code>{Output, SectionPosition, LessonPosition}</code>) y al llamar al <code>foldl</code> nos vemos obligados a descartar elementos del resultado (<code>{Output, _, _}</code>). Desde ya que todo esto está bien adentrado en el territorio del gusto personal; ninguna de las opciones anteriores me parece rebuscada, todas podrían calificar de <i>idiomáticas</i>.
+Encuentro que estas funciones "reductoras" son un poco confusas cuando se las separa del llamado a <code>foldl</code>: se oscurece la justificación para empaquetar los argumentos en una tupla (<code>{Output, SectionPosition, LessonPosition}</code>) y al llamar al <code>foldl</code> me veo obligado a descartar elementos del resultado (<code>{Output, _, _}</code>). Desde ya que esto corresponde al gusto personal; ninguna de las opciones anteriores me parece rebuscada, todas podrían calificar de <i>idiomáticas</i>.
 </p>
 </div>
 </div>
@@ -228,7 +233,7 @@ Encuentro que estas funciones "reductoras" son un poco confusas cuando se las se
 </p>
 
 <p>
-Yo creo que existe el estilo en programación, entendido como las preferencias, la impronta personal del individuo para expresarse a través del código. Existe y es de las cosas que enriquecen al oficio, pero hay que usarlo con moderación. Hablando de proyectos profesionales (es decir, cuando el objetivo principal es producir código útil y no experimentar o entretenerse), yo suscribo a la idea de que el estilo apropiado es aquel preexistente en el código sobre el que se trabaja. Pero en ciertos casos no hay código preexistente o lo hay pero no informa el estilo de lo que vamos a escribir; o bien consideramos que el código preexistente es inadecuado y nos disponemos a reemplazarlo. En estos casos hay que apelar a lo idiomático, es decir, usar la herramienta en forma convencional, no exigir un esfuerzo innecesario a quien tenga que leer lo que vamos a escribir. Solo dentro de esos márgenes me parece aceptable dar lugar al estilo personal.
+Yo creo que existe el estilo en programación, entendido como las preferencias, la impronta personal del individuo para expresarse a través del código. Existe y es de las cosas que enriquecen al oficio, pero hay que usarlo con moderación. Hablando de proyectos profesionales (es decir, aquellos cuyo objetivo principal es producir software útil y no experimentar o entretenerse), yo suscribo a la idea de que el estilo apropiado es aquel preexistente en el código sobre el que se trabaja. Pero en ciertos casos no hay código preexistente o lo hay pero no informa el estilo de lo que vamos a escribir; o bien consideramos que el código preexistente es inadecuado y nos disponemos a reemplazarlo. En estos casos hay que apelar a lo idiomático, es decir, usar la herramienta en forma convencional, no exigir un esfuerzo innecesario a quien tenga que leer lo que vamos a escribir. Solo dentro de esos márgenes me parece aceptable dar lugar al estilo personal.
 </p>
 
 <p>
@@ -263,12 +268,12 @@ Si bien podría escribir una solución casi idéntica a la de Python<sup><a id="
     <span style="color: #0000FF;">const</span> <span style="color: #BA36A5;">lessons</span> = [];
     <span style="color: #0000FF;">for</span> (<span style="color: #0000FF;">let</span> <span style="color: #BA36A5;">j</span> = 0; j &lt; section.lessons.length; j++) {
       <span style="color: #0000FF;">let</span> <span style="color: #BA36A5;">lesson</span> = section.lessons[j];
-      lesson = Object.assign({position: lessonPosition}, lesson);
+      lesson = {...lesson, position: lessonPosition};
       lessons.push(lesson);
       lessonPosition++;
     }
 
-    section = Object.assign({}, section, {position: i + 1, lessons});
+    section = {...section, position: i + 1, lessons};
     result.push(section);
   }
 
@@ -303,12 +308,12 @@ Si bien podría escribir una solución casi idéntica a la de Python<sup><a id="
 </div>
 
 <p>
-Con un poco de liberalidad me permito mutar la variable externa <code>lessonPosition</code> y así cambiar lo que sería un <code>reduce</code> por un <code>map</code>,
+Me tomé la licencia de mutar la variable externa <code>lessonPosition</code> y así cambiar lo que sería un <code>reduce</code> por un <code>map</code>,
 resultando la que probablemente sea la más sencilla de todas las implementaciones que mostré.
 </p>
 
 <p>
-Claro que todo se puede llevar demasiado lejos. Durante un tiempo tuve cierta fanatización con la biblioteca <a href="https://ramdajs.com/">Ramda.js</a> y empecé a producir un código que puede gustar o no, pero ciertamente no es idiomático. El mejor ejemplo es <a href="https://github.com/facundoolano/aso/blob/master/lib/visibility.js">el paquete App Store Optimization</a>: lo escribí casi completamente en términos de transformaciones de datos con funciones de Ramda y el resultado, para bien o para mal, fue que logré que todo el mundo se abstuviera para siempre de mandar un Pull-Request a ese repositorio.
+Claro que todo se puede llevar demasiado lejos. Durante un tiempo tuve cierta fascinación con la biblioteca <a href="https://ramdajs.com/">Ramda.js</a> y produje código que puede gustar o no, pero ciertamente no es idiomático. El mejor ejemplo es el <a href="https://github.com/facundoolano/aso/blob/master/lib/visibility.js">paquete App Store Optimization</a>: lo escribí casi completamente en términos de transformaciones de datos con funciones de Ramda y el resultado, para bien o para mal, fue que logré que todo el mundo se abstuviera para siempre de mandar un Pull-Request a ese repositorio.
 </p>
 </div>
 </div>
