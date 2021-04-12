@@ -39,7 +39,7 @@ Tendría que haber forzado las cosas para llegar a algo diferente.
 
 Encuentro que Python minimiza la distancia entre lo que pienso y lo que termino por escribir. Supongo que se debe en parte a la expresividad del lenguaje pero también a que la forma en que aprendí a razonar cuando estaba empezando a programar se ajusta bastante al estilo imperativo que fomenta Python.
 
-Para ser justo en las comparaciones con los otros lenguajes voy a agregar algunas restricciones: el código no puede estar suelto en el módulo, ensuciando el scope global, sino que tiene que ser agrupado en funciones; y la función quer recibe la lista de secciones no puede mutarla sino que tiene que construir una nueva estructura:
+Para ser justo en las comparaciones con los otros lenguajes voy a agregar algunas restricciones: el código no puede estar suelto en el módulo sino que tiene que ser agrupado en funciones; la función que recibe la lista de secciones no puede mutarla sino que tiene que construir una nueva estructura:
 #+begin_src python
 def traverse(sections):
     result = []
@@ -89,7 +89,7 @@ traverse_sections([], Output, % ...
     lists:reverse(Output).
 #+end_src
 
-La primera versión que funcionó me quedó así:
+La primera versión me quedó así:
 
 #+begin_src erlang
 traverse_sections([Section | Rest], Output, SectionPosition, LessonPositon) ->
@@ -115,7 +115,7 @@ traverse_lessons([], Output, LastLessonPosition) ->
     {lists:reverse(Output), LastLessonPosition}.
 #+end_src
 
-Un poco más engorroso que la versión imperativa, pero nada complicado. Prestando un poco de atención, el ~case~ en la primera cláusula me huele mal: en primer lugar porque está haciendo dos cosas a la vez (extraer la lista de lecciones y decidir si se debe resetar la posición), en segundo lugar porque prefiero extraer los ~case~ a funciones auxiliares con pattern-matching en sus argumentos. El resultado:
+Un poco más engorroso que la versión imperativa, pero nada complicado. Prestando un poco de atención, el ~case~ en la primera cláusula me huele mal: en primer lugar porque está haciendo dos cosas a la vez (extraer la lista de lecciones y decidir si se debe resetear la posición), en segundo lugar porque no me gusta hacer con un ~case~ lo que se puede hacer con una función auxiliar con pattern-matching en sus argumentos. El resultado:
 
 #+begin_src erlang
 traverse_sections([Section | Rest], Output, SectionPosition, LessonPosition) ->
@@ -184,12 +184,12 @@ Encuentro que estas funciones "reductoras" son un poco confusas cuando se las se
 
 ¿Qué me impide intercambiar los estilos que usé para Python y Erlang? Salvando las especificidades de cada plataforma, uno podría ensayar una versión funcional en Python usando ~map~, ~reduce~ y ~lambda~, así como una versión con estado mutable en Erlang, por ejemplo usando [[https://erlang.org/doc/man/counters.html][counters]][fn:2]. Esas soluciones serían válidas pero extravagantes, el tipo de código que hace detenerse al lector y preguntar /qué es esto/. ¿Qué me impide hacerlo? La empatía, la vergüenza. El respeto por el prójimo. Los usos y costumbres. La honestidad intelectual. Lo idiomático.
 
-Yo creo que existe el estilo en programación, entendido como las preferencias, la impronta personal del individuo para expresarse a través del código. Existe y es de las cosas que enriquecen al oficio, pero hay que usarlo con moderación. Hablando de proyectos profesionales (es decir, aquellos cuyo objetivo principal es producir software útil y no experimentar o entretenerse), yo suscribo a la idea de que el estilo apropiado es aquel preexistente en el código sobre el que se trabaja. Pero en ciertos casos no hay código preexistente o lo hay pero no informa el estilo de lo que vamos a escribir; o bien consideramos que el código preexistente es inadecuado y nos disponemos a reemplazarlo. En estos casos hay que apelar a lo idiomático, es decir, usar la herramienta en forma convencional, no exigir un esfuerzo innecesario a quien tenga que leer lo que vamos a escribir. Solo dentro de esos márgenes me parece aceptable dar lugar al estilo personal.
+Yo creo que existe el estilo en programación, entendido como las preferencias, la impronta personal del individuo para expresarse a través del código. Existe y es de las cosas que enriquecen al oficio, pero hay que usarlo con moderación. Hablando de proyectos profesionales (es decir, aquellos cuyo objetivo principal es producir software útil y no experimentar o entretenerse), suscribo a la idea de que el estilo apropiado es aquel preexistente en el código sobre el que se trabaja. Pero en ciertos casos no hay código preexistente o lo hay pero no informa el estilo de lo que vamos a escribir; o bien consideramos que el código preexistente es inadecuado y nos disponemos a reemplazarlo. En estos casos hay que apelar a lo idiomático, es decir, usar la herramienta en forma convencional, no exigir un esfuerzo innecesario a quien tenga que leer lo que vamos a escribir. Solo dentro de esos límites me parece aceptable dar lugar al estilo personal.
 
 Es cierto que hablar de lo idiomático es meterse en terreno pantanoso. Salvo en casos puntuales, las convenciones no están escritas; refieren a un sentido común discutible, sujeto a interpretación y a cambios en el tiempo. El peligro es convencerse de que existe una única forma correcta de hacer las cosas y que, casualmente, coincide con /nuestra/ forma de hacer las cosas. No queda más que ser autocrítico: ver el código con los ojos del otro, que el código sea visto por otros ojos.
 
 ** Posdata: JavaScript
-¿Existe lo idiomático en JavaScript, un lenguaje que es tantos lenguajes y que está en flujo constante? No voy a repetir lo que ya puse en [[file:../2020-09-22-javascript-las-partes-nobles][otro post]], pero seguramente hay ciertos consensos sobre lo que /no/ se debe hacer. Lo que es decir que hay bastante margen para el propio estilo o, en todo caso, para un estilo consensuado en equipo o en comunidad.
+¿Existe lo idiomático en JavaScript, un lenguaje que es tantos lenguajes? No voy a repetir lo que ya puse en [[file:../2020-09-22-javascript-las-partes-nobles][otro post]], pero seguramente hay ciertos consensos sobre lo que /no/ se debe hacer. Lo que es decir que hay buen margen para el propio estilo o, en todo caso, para un estilo consensuado en equipo o en comunidad.
 
 Si bien podría escribir una solución casi idéntica a la de Python[fn:1]...
 
@@ -246,7 +246,7 @@ function traverse(sections) {
 Me tomé la licencia de mutar la variable externa ~lessonPosition~ y así cambiar lo que sería un ~reduce~ por un ~map~,
 resultando la que probablemente sea la más sencilla de todas las implementaciones que mostré.
 
-Claro que todo se puede llevar demasiado lejos. Durante un tiempo tuve cierta fascinación con la biblioteca [[https://ramdajs.com/][Ramda.js]] y produje código que puede gustar o no, pero ciertamente no es idiomático. El mejor ejemplo es el [[https://github.com/facundoolano/aso/blob/master/lib/visibility.js][paquete App Store Optimization]]: lo escribí casi completamente en términos de transformaciones de datos con funciones de Ramda y el resultado, para bien o para mal, fue que logré que todo el mundo se abstuviera para siempre de mandar un Pull-Request a ese repositorio.
+Claro que todo se puede llevar demasiado lejos. Durante un tiempo tuve cierta fascinación con la biblioteca [[https://ramdajs.com/][Ramda.js]] y produje código que puede gustar o no, pero ciertamente no es idiomático. El mejor ejemplo es el [[https://github.com/facundoolano/aso/blob/master/lib/visibility.js][paquete App Store Optimization]]: lo expresé casi completamente en términos de transformaciones de datos con funciones de Ramda y el resultado, para bien o para mal, fue que todo el mundo se abstuvo para siempre de mandar un Pull-Request a ese proyecto.
 
 ** Posdata: Ejercicios de estilo
 Hay un libro que sigue una premisa parecida al repositorio de José Valim. Se llama [[https://www.routledge.com/Exercises-in-Programming-Style/Lopes/p/book/9780367350208][Exercises in programming style]], inspirado por
