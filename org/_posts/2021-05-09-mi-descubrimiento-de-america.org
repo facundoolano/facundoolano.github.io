@@ -1,0 +1,50 @@
+#+OPTIONS: toc:nil num:nil
+#+LANGUAGE: es
+#+BEGIN_EXPORT html
+---
+layout: post
+title: "Mi descubrimiento de América"
+subtitle: Subrayados
+date: 2021-05-09 13:08:29
+tags: [literatura, libros]
+---
+#+END_EXPORT
+
+#+begin_verse
+Ante algunos pasaportes, una sonrisita en los labios.
+Ante otros, un despercio unánime.
+Y de pronto, como si quemara, el señor tuerce la boca.
+Es que... el señor funcionario toma mi pasaporte escarlata.
+Lo toma como una bomba,
+lo toma como a un erizo,
+como si tomara una navaja afilada,
+lo toma como a una serpiente de cascabel de veinte aguijones.
+#+end_verse
+
+/La primera clase vomita donde se le da la gana; la segunda, sobre la tercera, y la tercera sobre sí misma./
+
+<periódico del vapor>
+
+/En México todo el mundo lleva el dinero en bolsos. La frecuencia con la que cambian los gobiernos (durante veintiocho años hubo treinta presidentes) ha quebrado la confianza en cualquier tipo de papeles. Por eso andan con los bolsos./
+
+<crónica sin el yo contemporáneo>
+
+/Un automóvil intenta alcanzar a otro; juntos, intentan alcanzar al ómnibus, y ya todos juntos suben a las veredas donde cazan peatones imprudentes./
+
+<descubrimiento de américa como una tierra extraña, como Colón y Cortés, como si se describiera otro planeta>
+
+/En estas casas no hay ventanas, y a través de las puertas abiertas se ven familias de ocho o diez personas hacinadas en una habitación./
+
+<¿como sería la relación de un nuevo continente o de una nueva civilización, si fuera hecho en pleno siglo XX?>
+
+/El revolucionario mexicano es cualquiera que derroque al poder con armas en la mano, no importa de qué poder se trate. Y, como en México cualquiera ha derrocado, está derrocando o quiere derrocar a algún poder, todos son revolucionarios./
+
+<electricidad>
+
+/La burguesía posee toda la electricidad y come con velas. Le tiene un pánico inconsciente a su propia luz eléctrica. Está perpleja como un mago que ha conjurado espíritus que no sabe controlar. La mayoría tiene la misma actitud hacia el resto de los avances técnicos./
+
+/Cuando la llamada balanza de la historia empiece a oscilar, mucho dependerá sobre qué platillo pongan doce millones de negros sus veinticuatro millones de pesadas manos. Los negros, calentados por las hogueras de Texas, son una pólvora lo suficientemente seca para las explosiones revolucionarias./
+
+/No lo digo para defender mi propio poema, lo digo para afirmar el derecho y la necesidad que tiene el poeta de reorganizar y reciclar el material visible, en vez de pulir lo que es evidente a simple vista./
+
+/Es posible que los Estados Unidos en su totalidad se conviertan en los últimos defensores armados de la causa desesperada de la burguesía; entonces, la historia podrá escribir una buena novela parecida a "La guerra de los mundos" de Wells./

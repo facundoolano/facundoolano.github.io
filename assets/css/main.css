@@ -958,3 +958,8 @@ pre {
 code {
     color: #BA36A5;
 }
+
+p.verse {
+    font-style: italic;
+    text-align: right;
+}
