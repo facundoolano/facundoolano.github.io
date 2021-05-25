@@ -6,7 +6,7 @@ layout: post
 title: "Apocalipsis"
 subtitle: "Notas de lectura"
 date: 2021-03-15
-cover-img: assets/img/thestand2.jpg
+cover-img: assets/img/thestand2.png
 thumbnail-img: assets/img/thestand.jpg
 tags: [libros, literatura, ficción]
 ---
