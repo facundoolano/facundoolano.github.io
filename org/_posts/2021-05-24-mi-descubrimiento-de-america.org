@@ -10,16 +10,9 @@ tags: [literatura, libros]
 ---
 #+END_EXPORT
 
-#+begin_verse
-Ante algunos pasaportes, una sonrisita en los labios.
-Ante otros, un desprecio unánime.
-Y de pronto, como si quemara, el señor tuerce la boca.
-Es que... el señor funcionario toma mi pasaporte escarlata.
-Lo toma como una bomba,
-lo toma como a un erizo,
-como si tomara una navaja afilada,
-lo toma como a una serpiente de cascabel de veinte aguijones.
-#+end_verse
+#+begin_quote
+No lo digo para defender mi propio poema, lo digo para afirmar el derecho y la necesidad que tiene el poeta de reorganizar y reciclar el material visible, en vez de pulir lo que es evidente a simple vista.
+#+end_quote
 
 Vladimir Maiakovski viaja a América en 1925 o, mejor dicho ---según el título de su crónica---, /descubre/ América. Al modo de Colón o Hernán Cortes[fn:1], desembarca en Cuba, cruza a México y hace una "relación" de su viaje para sus compatriotas.
 
@@ -58,22 +51,16 @@ La burguesía posee toda la electricidad y come con velas. Le tiene un pánico i
 En la mayoría de mis lecturas la electricidad es un elemento ambiental, binario: o todavía no se inventó o está en todas partes. Por primera vez me cruzo con un texto en que la electricidad es una novedad. Maiakovski parece obsesionado por el asunto, se preocupa por las /cantidades/ que ve a su alrededor, como si los burgueses yanquis se fueran a morir de exceso de electricidad.
 
 #+begin_quote
-Es posible que los Estados Unidos en su totalidad se conviertan en los últimos defensores armados de la causa desesperada de la burguesía; entonces, la historia podrá escribir una buena novela parecida a "La guerra de los mundos" de Wells.
-#+end_quote
-
-Eludiendo toda rigurosidad histórica[fn:4], diríamos que la magnitud de la impresión que Maiakovski se lleva de los Estados Unidos obedece a las circunstancias: un ruso que visitara el país 30 años antes no hubiera encontrado semejantes divergencias entre las dos culturas, y uno que lo visitara 30 años después se encontraría con unas divergencias tal vez mayores pero harto conocidas, digeridas.
-
-#+begin_quote
 Cuando la llamada balanza de la historia empiece a oscilar, mucho dependerá sobre qué platillo pongan doce millones de negros sus veinticuatro millones de pesadas manos. Los negros, calentados por las hogueras de Texas, son una pólvora lo suficientemente seca para las explosiones revolucionarias.
 #+end_quote
 
 Es llamativa la vigencia de algunos de los problemas que denuncia el poeta: la contaminación, la violencia contra los negros, las consecuencias de un mundo orientado por la publicidad, en el que a todo se le puede poner un precio.
 
-#+begin_quote
-No lo digo para defender mi propio poema, lo digo para afirmar el derecho y la necesidad que tiene el poeta de reorganizar y reciclar el material visible, en vez de pulir lo que es evidente a simple vista.
-#+end_quote
+Eludiendo toda rigurosidad histórica[fn:4], diríamos que la magnitud de la impresión que Maiakovski se lleva de los Estados Unidos obedece a las circunstancias: un ruso que visitara el país 30 años antes no hubiera encontrado semejantes divergencias entre las dos culturas, y uno que lo visitara 30 años después se encontraría con unas divergencias tal vez mayores pero harto conocidas, digeridas.
 
-# MAS SUBRAYADOS:
+#+begin_quote
+Es posible que los Estados Unidos en su totalidad se conviertan en los últimos defensores armados de la causa desesperada de la burguesía; entonces, la historia podrá escribir una buena novela parecida a "La guerra de los mundos" de Wells.
+#+end_quote
 
 * Footnotes
 
@@ -88,10 +75,3 @@ No lo digo para defender mi propio poema, lo digo para afirmar el derecho y la n
 [fn:4] Se remite al lector al nombre de este blog.
 
 [fn:5] No.
-
-
-
-
-# IDEA:
-# [fn:2] No está chequeado.
-# [fn:3] No fue chequeado.
