@@ -4,7 +4,7 @@
 ---
 layout: post
 title: "Sueño submarino"
-date: 2021-05-25
+date: 2021-05-26
 tags: ["ficción"]
 thumbnail-img: assets/img/submarine.png
 ---
@@ -20,7 +20,7 @@ Cambia la perspectiva, otra vez se ve al submarino maniobrando trabajosamente so
 
 Yo tengo el impulso de salir nadando hacia la superficie antes de que la caída nos deje a una profundidad insalvable pero la siguiente imagen desmiente lo anterior: el submarino vuelve a ser un submarino, uno que se inunda, sí, pero al menos no se hunde, el agua se filtra y nos moja los talones pero todavía hay un techo. La situación es relativamente menos apremiante pero persiste el impulso de nadar por el aire hasta la escalera en la sala contigua y abandonar la nave; intento moverme pero las piernas no responden, el agua me aferra los tobillos como cemento.
 
-En eso entra a la sala la coordinadora del viaje, una mujer con aire de profesora de ciencias, y nos pide que mantengamos la calma. Se sienta en una de las mesas alargadas y abre un manual de operaciones —un libraco que evoca plantas nucleares soviéticas—, busca  un procedimiento para emergencias. Se toma su tiempo, se moja el dedo y pasa las páginas con parsimonia, como si no corriera el agua por las paredes y las espaldas.
+En eso entra a la sala la coordinadora del viaje, una mujer con aire de profesora de ciencias, y nos pide que mantengamos la calma. Se sienta en una de las mesas alargadas y abre un manual de operaciones —un libraco que evoca plantas nucleares soviéticas—, busca  un procedimiento para emergencias. Se toma su tiempo, se moja el dedo para pasar las páginas como si no corriera el agua por las paredes, por las espaldas.
 
 Yo sigo desesperado por salir pero cedo ante la autoridad de la Profesora, admito que hasta ahora me preocupé únicamente por mi propia supervivencia, mientras que la Profesora se hace responsable por el grupo. Después de otro rato de gestos concentrados y resoplidos de fastidio, sin embargo, llega a la conclusión de que no hay manera de salvar la nave y que tenemos que evacuar ordenadamente. Nos manda a todos a nuestras cabinas a buscar provisiones y a reunirnos en diez minutos alrededor de la escalera de salida. Nos pide específicamente no perder el tiempo tratando de salvar el equipaje. No sé exactamente qué se propone pero evidentemente anticipa algún tipo de expedición de supervivencia porque la orden es reunir todos los alimentos que encontremos, como si nos dispusiéramos a esperar el rescate en una isla desierta.
 
