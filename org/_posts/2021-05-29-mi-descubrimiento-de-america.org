@@ -5,7 +5,7 @@
 layout: post
 title: "Mi descubrimiento de América"
 subtitle: Subrayados
-date: 2021-05-25
+date: 2021-05-29
 tags: [literatura, libros]
 thumbnail-img: assets/img/maiakovski.jpg
 ---
@@ -31,9 +31,9 @@ En estas casas no hay ventanas, y a través de las puertas abiertas se ven famil
 Un automóvil intenta alcanzar a otro; juntos, intentan alcanzar al ómnibus, y ya todos juntos suben a las veredas donde cazan peatones imprudentes.
 #+end_quote
 
-Acostumbrado como estoy a los relatos contemporáneos de viaje y a la ficción del yo donde todo es tamizado por el ego del narrador, me impacta el tono lejano con que Maiakovski describe los lugares que visita. El ruso rara vez habla de sí mismo, de sus sensaciones o sus actividades, se limita a describir lo que observa con autoridad: el barco es así, Cuba es así, América es así. No sé precisar si esto tiene que ver con el estilo de la época o sencillamente con que Maiakovski conoce a su público y sabe que a este no le importa él sino América; al obrero soviético, que puede conocer una docena de poetas en el café del barrio pero que nunca va a salir de la Patria, quiere que le cuenten el Nuevo Mundo[fn:3]. Esto contribuye a aquella sensación de que el texto se emparenta más con los diarios de los descubridores que con las crónicas contemporáneas.
+Acostumbrado como estoy a los relatos contemporáneos de viaje y a la ficción del yo donde todo es tamizado por el ego del narrador, me impacta el tono lejano con que Maiakovski describe los lugares que visita. El ruso rara vez habla de sí mismo, de sus sensaciones o sus actividades, se limita a describir lo que observa con autoridad: el barco es así, Cuba es así, América es así. No sé precisar si esto responde al estilo de la época o sencillamente a que Maiakovski conoce a su público y sabe que a este no le importa él sino América: el obrero soviético, que puede conocer una docena de poetas en el café del barrio pero que nunca va a salir de la Patria, quiere que le cuenten el Nuevo Mundo[fn:3]. Esto contribuye a aquella sensación de que el texto se emparenta más con los diarios de los descubridores que con las crónicas contemporáneas.
 
-Y como nadie está mirando me permito extrapolar y situar en una misma línea los diarios de Colón y Cortés[fn:2], este texto de Maiakovski y los relatos de ciencia ficción sobre el descubrimiento de otros planetas. ¿Podríamos imaginarnos un relato de Bradbury en el que el narrador se demorase en evocaciones de la infancia y edipos mal resueltos en lugar de describirnos las geografías marcianas?
+Y como nadie está mirando me permito extrapolar y situar en una misma línea los diarios de Colón y Cortés[fn:2], este texto de Maiakovski y los relatos de ciencia ficción sobre la exploración de otros planetas. ¿Podríamos imaginarnos un relato de Bradbury en el que el narrador se demorase en evocaciones de la infancia y edipos mal resueltos en lugar de describirnos las geografías marcianas?
 
 #+begin_quote
 En México todo el mundo lleva el dinero en bolsos. La frecuencia con la que cambian los gobiernos (durante veintiocho años hubo treinta presidentes) ha quebrado la confianza en cualquier tipo de papeles. Por eso andan con los bolsos.
@@ -49,13 +49,13 @@ Acaso la parte menos interesante del texto es la dedicada a Estados Unidos, en p
 La burguesía posee toda la electricidad y come con velas. Le tiene un pánico inconsciente a su propia luz eléctrica. Está perpleja como un mago que ha conjurado espíritus que no sabe controlar. La mayoría tiene la misma actitud hacia el resto de los avances técnicos.
 #+end_quote
 
-En la mayoría de mis lecturas la electricidad es un elemento ambiental, binario: o todavía no se inventó o está en todas partes. Por primera vez me cruzo con un texto en que la electricidad es una novedad. Maiakovski parece obsesionado por el asunto, se preocupa por las /cantidades/ que ve a su alrededor, como si los burgueses yanquis se fueran a morir de exceso de electricidad.
+En la mayoría de mis lecturas la electricidad es un elemento ambiental, binario: o todavía no se inventó o está en todas partes. Por primera vez me cruzo con un texto en el que la electricidad es novedosa. Maiakovski parece obsesionado por el asunto, se preocupa por las /cantidades/ que ve a su alrededor, como si los burgueses yanquis se fueran a morir de exceso de electricidad.
 
 #+begin_quote
 Cuando la llamada balanza de la historia empiece a oscilar, mucho dependerá sobre qué platillo pongan doce millones de negros sus veinticuatro millones de pesadas manos. Los negros, calentados por las hogueras de Texas, son una pólvora lo suficientemente seca para las explosiones revolucionarias.
 #+end_quote
 
-Es llamativa la vigencia de algunos de los problemas que denuncia el poeta: la contaminación, la violencia contra los negros, las consecuencias de un mundo orientado por la publicidad, en el que a todo se le puede poner un precio.
+Es llamativa la vigencia de algunos de los problemas que denuncia el poeta: la contaminación, la violencia contra los negros, las consecuencias de un mundo orientado por la publicidad en el que a todo se le puede poner un precio.
 
 Eludiendo toda rigurosidad histórica[fn:4], diríamos que la magnitud de la impresión que Maiakovski se lleva de los Estados Unidos obedece a las circunstancias: un ruso que visitara el país 30 años antes no hubiera encontrado semejantes divergencias entre las dos culturas, y uno que lo visitara 30 años después se encontraría con unas divergencias tal vez mayores pero harto sabidas, famosas.
 
